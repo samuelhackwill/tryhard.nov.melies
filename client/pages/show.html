@@ -1,9 +1,13 @@
 <template name="show">
-  <div class="backgroundContainer w-full h-full absolute top-0 left-0">
+  <div class="backgroundContainer flex w-full h-full absolute top-0 left-0">
     {{>background}}
     <!-- {{>folderVestiaire}} {{>folderAdmin}} {{>folderTrees x=1000 y=100}} {{>plusminus}} {{#if isItActe2s1}}  -->
-    {{>bulle}}
     <!-- {{/if}} -->
+    <div class="flex flex-col-reverse p-4" id="feed">
+      {{#each feedItem}}
+      {{>blocVoixOff this}}
+      {{/each}}
+    </div>
   </div>
 
   <div class="milieuContainer">

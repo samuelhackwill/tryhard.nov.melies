@@ -1,5 +1,4 @@
-import "./folder.html"
-import { GlobalEvent, GlobalEvents } from "./../FSMs/globalEvents.js"
+import './folder.html'
 
 Template.folderAdmin.onCreated(function () {
   this.pos = new ReactiveVar([500, 400])

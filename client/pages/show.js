@@ -34,6 +34,7 @@ let bots = []
 let players = []
 
 Template.show.onCreated(function () {
+  this.feed = new ReactiveVar([])
   this.currentState = new ReactiveVar(states.INITIAL)
   this.areNamesHidden = new ReactiveVar(true)
   this.plantedTrees = new ReactiveDict()
@@ -110,7 +111,10 @@ Template.show.onRendered(function () {
 })
 
 function handlePupitreMessage(message) {
-  console.log(message)
+  _feed = instance.feed.get()
+  _feed.unshift(message)
+
+  instance.feed.set(_feed)
 }
 
 function handlePointerMessage(message) {
@@ -143,6 +147,9 @@ function handlePointerMessage(message) {
 }
 
 Template.show.helpers({
+  feedItem() {
+    return Template.instance().feed.get()
+  },
   isItActe2s1() {
     state = Template.instance().currentState.get()
     if (state != 'INITIAL' && state != 'ACTE1s1' && state != 'ACTE1s2' && state != 'ACTE3s1') {

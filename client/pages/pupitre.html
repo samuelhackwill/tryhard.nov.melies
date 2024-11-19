@@ -5,8 +5,8 @@
     </div>
 
     <div class="ml-4">
-      <div class="grid grid-cols-5 gap-4 p-4 h-full">
-        <div>
+      <div class="grid grid-cols-5 gap-4 p-4 h-full absolute">
+        <div class="overflow-scroll">
           {{#each getHeaders}}
           <div>
             <span class="select-none cursor-pointer underline hover:text-blue-600 header">
@@ -15,7 +15,7 @@
           </div>
           {{/each}}
         </div>
-        <div class="col-span-3" id="textLinesColumn">
+        <div class="col-span-3 overflow-scroll" id="textLinesColumn">
           {{#each getContent}}
           <div class="mb-2">
             <a
