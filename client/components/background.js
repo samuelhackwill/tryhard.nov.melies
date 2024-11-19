@@ -2,7 +2,8 @@ import './background.html'
 
 Template.background.helpers({
   getBg() {
-    return 'bg-[blue]'
+    // return 'bg-[blue]'
+    return 'background-color:blue;'
     // let currentView = Template.instance().view
 
     // while (currentView != null) {

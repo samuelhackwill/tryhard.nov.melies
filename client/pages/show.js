@@ -59,6 +59,9 @@ Template.show.onCreated(function () {
   //Listen to logger events (one message whenever a pointer moves or clicks)
   streamer.on('pointerMessage', handlePointerMessage)
 
+  //Listen to pupitre sending text
+  streamer.on('pupitreMessage', handlePupitreMessage)
+
   //Create 96 bots
   this.bots = [] //Keep the array of bots on hand, it's easier than filtering this.pointers every time
   for (let i = 0; i < 96; i++) {
@@ -105,6 +108,11 @@ Template.show.onRendered(function () {
     }
   })
 })
+
+function handlePupitreMessage(message) {
+  console.log(message)
+}
+
 function handlePointerMessage(message) {
   console.log('debug ', message)
   let pointer = instance.pointers.get(message.loggerId)

@@ -9,14 +9,19 @@
         <div>
           {{#each getHeaders}}
           <div>
-            <span class="cursor-pointer underline hover:text-blue-600 header"> {{ key }} </span>
+            <span class="select-none cursor-pointer underline hover:text-blue-600 header">
+              {{ key }}
+            </span>
           </div>
           {{/each}}
         </div>
         <div class="col-span-3" id="textLinesColumn">
           {{#each getContent}}
           <div class="mb-2">
-            <a class="focus:bg-red-50 cursor-pointer hover:text-blue-600 p-2 line" tabindex="0">
+            <a
+              class="focus:bg-blue-50 cursor-pointer select-none hover:text-blue-600 line"
+              tabindex="0"
+            >
               {{ this }}
             </a>
           </div>

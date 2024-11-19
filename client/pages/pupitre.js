@@ -1,5 +1,7 @@
 import './pupitre.html'
 
+import { streamer } from '../../both/streamer.js'
+
 Template.pupitre.onCreated(function () {
   this.text = new ReactiveVar('')
   this.selectedHeader = new ReactiveVar('')
@@ -24,12 +26,13 @@ Template.pupitre.events({
   },
 
   'click .line'() {
-    sendLine(this)
+    // we need to send the text when it's text, but when it's an action then it'll be something else RIGHT
+    sendLine(String(this))
   },
 
   'keyup .line'(e) {
     if (e.key == 'Enter') {
-      sendLine(this)
+      sendLine(String(this))
     } else {
       return
     }
@@ -60,6 +63,7 @@ Template.pupitre.helpers({
   },
 })
 
-const sendLine = function (text) {
-  console.log(text)
+const sendLine = function (string) {
+  console.dir(string)
+  streamer.emit('pupitreMessage', { type: 'newLine', content: string })
 }
