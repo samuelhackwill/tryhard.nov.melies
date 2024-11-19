@@ -1,18 +1,32 @@
-import { Template } from "meteor/templating"
-import { ReactiveDict } from "meteor/reactive-dict"
-import { streamer } from "../both/streamer.js"
-import { getRandomBossAccessory, getRandomAccessory } from "./dressup.js"
-import { getRandomTree } from "./trees.js"
-import { stepper } from "./stepper.js"
-import { sendToSides, circleRoutine, dressupAnimation, killAnimation, treePickUpAnimation } from "./bots.js"
-import { resetRoutine, welcomeRoutine, regroupRoutine, squareRoutine, playgroundRoutine, axisRoutine, graphRoutine } from "./bots.js"
-import { randomBetween } from "../both/math-helpers.js"
+import { Template } from 'meteor/templating'
+import { ReactiveDict } from 'meteor/reactive-dict'
+import { streamer } from '../../both/streamer.js'
+import { getRandomBossAccessory, getRandomAccessory } from '../dressup.js'
+import { getRandomTree } from '../trees.js'
+import { stepper } from '../stepper.js'
+import {
+  sendToSides,
+  circleRoutine,
+  dressupAnimation,
+  killAnimation,
+  treePickUpAnimation,
+} from '../bots.js'
+import {
+  resetRoutine,
+  welcomeRoutine,
+  regroupRoutine,
+  squareRoutine,
+  playgroundRoutine,
+  axisRoutine,
+  graphRoutine,
+} from '../bots.js'
+import { randomBetween } from '../../both/math-helpers.js'
 
-import "./components/main.js"
-import "./show.html"
+import '../components/main.js'
+import './show.html'
 
-import { states, events, transition, triggers } from "./FSMs/showFSM.js"
-import { GlobalEvents, GlobalEvent } from "./FSMs/globalEvents.js"
+import { states, events, transition, triggers } from '../FSMs/showFSM.js'
+import { GlobalEvents, GlobalEvent } from '../FSMs/globalEvents.js'
 
 let eventQueue = []
 let pointers = []
@@ -32,7 +46,7 @@ Template.show.onCreated(function () {
   // ux state for windows
   this.isAdminOpen = new ReactiveVar(false)
   this.adminPosition = new ReactiveVar([0, 0])
-  this.whichBackground = new ReactiveVar("slate.png")
+  this.whichBackground = new ReactiveVar('slate.png')
 
   // make instance callable from everywhere
   instance = this
@@ -40,15 +54,15 @@ Template.show.onCreated(function () {
   //Start the stepper at a fixed framerate (60fps)
   this.stepInterval = Meteor.setInterval(
     stepper.bind(this, [checkHover, checkBufferedClick]), //Call stepper, passing `this` as the context, and an array of callbacks to call on each pointer every frame
-    (1 / 60.0) * 1000 //60 frames per second <=> (1000/60)ms per frame
+    (1 / 60.0) * 1000, //60 frames per second <=> (1000/60)ms per frame
   )
   //Listen to logger events (one message whenever a pointer moves or clicks)
-  streamer.on("pointerMessage", handlePointerMessage)
+  streamer.on('pointerMessage', handlePointerMessage)
 
   //Create 96 bots
   this.bots = [] //Keep the array of bots on hand, it's easier than filtering this.pointers every time
   for (let i = 0; i < 96; i++) {
-    let bot = createBot("bot" + i)
+    let bot = createBot('bot' + i)
     //QUICKFIX: set a default state (hidden, not dead, etc). Probably should be done elsewhere
     resetRoutine(bot)
     this.pointers.set(bot.id, bot)
@@ -63,11 +77,11 @@ Template.show.onDestroyed(function () {
   //Stop the stepper
   clearInterval(this.stepInterval)
   //Stop listening to logger events
-  streamer.removeAllListeners("pointerMessage")
+  streamer.removeAllListeners('pointerMessage')
   pointers = []
 })
 Template.show.onRendered(function () {
-  streamer.emit("showInit", { width: window.innerWidth, height: window.innerHeight })
+  streamer.emit('showInit', { width: window.innerWidth, height: window.innerHeight })
 
   this.autorun(() => {
     // console.log("show RE-RENDERING because of global event : ", GlobalEvent.get())
@@ -85,14 +99,14 @@ Template.show.onRendered(function () {
       // GlobalEvents.goToAIs2
 
       key = GlobalEvent.get()
-      console.log("GlobalEvents[key] ", GlobalEvents[key])
+      console.log('GlobalEvents[key] ', GlobalEvents[key])
       transition(GlobalEvents[key], this)
       GlobalEvent.set(null)
     }
   })
 })
 function handlePointerMessage(message) {
-  console.log("debug ", message)
+  console.log('debug ', message)
   let pointer = instance.pointers.get(message.loggerId)
 
   //We don't know this pointer yet.
@@ -100,22 +114,22 @@ function handlePointerMessage(message) {
   if (pointer == undefined) {
     pointer = createPointer(message.loggerId)
     //QUICKFIX: set a default state for all the cursors (hidden, not dead, no accessory, etc)
-    if (pointer.id != "samuel") {
+    if (pointer.id != 'samuel') {
       // resetRoutine(pointer)
     }
     players.push(pointer)
   }
 
-  if (message.type == "move" && !pointer.locked) {
+  if (message.type == 'move' && !pointer.locked) {
     //Move messages are relative (e.g. 1px right, 2px down)
     //Apply that change to the coords
     pointer.coords.x += message.coords.x
     pointer.coords.y += message.coords.y
     //Save the pointer
     instance.pointers.set(pointer.id, pointer)
-  } else if (message.type == "mousedown") {
+  } else if (message.type == 'mousedown') {
     simulateMouseDown(pointer)
-  } else if (message.type == "mouseup") {
+  } else if (message.type == 'mouseup') {
     simulateMouseUp(pointer)
   }
 }
@@ -123,7 +137,7 @@ function handlePointerMessage(message) {
 Template.show.helpers({
   isItActe2s1() {
     state = Template.instance().currentState.get()
-    if (state != "INITIAL" && state != "ACTE1s1" && state != "ACTE1s2" && state != "ACTE3s1") {
+    if (state != 'INITIAL' && state != 'ACTE1s1' && state != 'ACTE1s2' && state != 'ACTE3s1') {
       return true
     } else {
       return false
@@ -132,16 +146,16 @@ Template.show.helpers({
 
   areNamesHidden() {
     if (Template.instance().areNamesHidden.get() === true) {
-      return "opacity-0"
+      return 'opacity-0'
     } else {
-      return "opacity-1"
+      return 'opacity-1'
     }
   },
   // Get all client pointers for iteration if you want to display all.
   allPointers(arg) {
     if (arg.hash.getAdmin === true) {
       // the pointer with ?id=samuel is the boss!
-      pointer = instance.pointers.get("samuel")
+      pointer = instance.pointers.get('samuel')
       if (pointer == undefined) {
         return
       } else {
@@ -166,16 +180,16 @@ Template.show.helpers({
 })
 
 Template.show.events({
-  "click .backgroundContainer"(event, tpl, extra) {
+  'click .backgroundContainer'(event, tpl, extra) {
     if (!extra) return
     let pointer = instance.pointers.get(extra.pointer.id)
 
-    if (extra.pointer.id == "samuel") {
+    if (extra.pointer.id == 'samuel') {
       tpl.isAdminOpen.set(false)
     }
   },
 
-  "click #background"(event, tpl, extra) {
+  'click #background'(event, tpl, extra) {
     if (!extra) return
     let pointer = instance.pointers.get(extra.pointer.id)
     if (!pointer) {
@@ -184,7 +198,7 @@ Template.show.events({
     //Does the pointer currently hold a tree?
     if (pointer.tree) {
       //Make up a new tree identifier (they're sequential)
-      let newTreeId = "tree-" + Object.keys(instance.plantedTrees.all()).length
+      let newTreeId = 'tree-' + Object.keys(instance.plantedTrees.all()).length
       //Add that tree to the reactive plantedTrees dictionary, so it can appear on the page
       instance.plantedTrees.set(newTreeId, { coords: pointer.coords, tree: pointer.tree })
       //The pointer no longer holds a tree
@@ -192,15 +206,15 @@ Template.show.events({
       instance.pointers.set(pointer.id, pointer)
     }
   },
-  "click button"() {
+  'click button'() {
     // note that the REAL pointer of localhost will be able to natively trigger this event as well as simulated clicks. (which is good for testing i guess)
     //console.log("SHOW.JS button clicked. ", this)
   },
-  "click .pointer"(event, tpl, extra) {
+  'click .pointer'(event, tpl, extra) {
     //Boss "kill on click" behaviour
-    if (extra.pointer.id == "samuel") {
+    if (extra.pointer.id == 'samuel') {
       //We're a pointer clicking on another pointer (the _pointee_)
-      let pointeeId = event.target.getAttribute("pointer-id")
+      let pointeeId = event.target.getAttribute('pointer-id')
       let pointee = instance.pointers.get(pointeeId)
       if (pointee.killable) {
         killAnimation(pointee)
@@ -208,7 +222,7 @@ Template.show.events({
       }
     }
   },
-  "click #folderVestiaire"(event, tpl, extra) {
+  'click #folderVestiaire'(event, tpl, extra) {
     if (!extra) return //No extra data was provided: we don't know which pointer clicked?
     let pointer = instance.pointers.get(extra.pointer.id)
     //Don't let locked pointers change their accessories
@@ -217,7 +231,7 @@ Template.show.events({
     //Clear the event queue (this helps bot dress up immediately, humans probably don't have events)
     pointer.events = []
 
-    if (pointer.id == "samuel") {
+    if (pointer.id == 'samuel') {
       dressupAnimation(pointer, getRandomBossAccessory())
     } else {
       dressupAnimation(pointer, getRandomAccessory())
@@ -225,7 +239,7 @@ Template.show.events({
 
     instance.pointers.set(pointer.id, pointer)
   },
-  "click #folderTrees"(event, tpl, extra) {
+  'click #folderTrees'(event, tpl, extra) {
     if (!extra) return //No extra data was provided: we don't know which pointer clicked?
     let pointer = instance.pointers.get(extra.pointer.id)
 
@@ -236,7 +250,7 @@ Template.show.events({
 
     instance.pointers.set(pointer.id, pointer)
   },
-  "click #folderAdmin"(event, tpl, extra) {
+  'click #folderAdmin'(event, tpl, extra) {
     if (extra) {
       instance.adminPosition.set([extra.pointer.coords.x, extra.pointer.coords.y])
     } else {
@@ -250,7 +264,7 @@ simulateMouseUp = function (pointer) {
   const elements = getElementsUnder(pointer)
   if (elements.length == 0) return
 
-  elements.forEach((e) => e.classList.remove("clicked"))
+  elements.forEach((e) => e.classList.remove('clicked'))
 }
 
 simulateMouseDown = function (pointer) {
@@ -259,18 +273,18 @@ simulateMouseDown = function (pointer) {
   for (element of elements) {
     // we need to restrict clicks on privileged buttons, like the admin buttons
     // so that only samuel can click on them.
-    if (element.classList.contains("privileged") && pointer.id != "samuel") {
+    if (element.classList.contains('privileged') && pointer.id != 'samuel') {
       return
     }
 
     //Trigger a jQuery click event with extra data (the pointer)
-    $(element).trigger("click", { pointer: pointer })
-    element.classList.remove("clicked")
+    $(element).trigger('click', { pointer: pointer })
+    element.classList.remove('clicked')
 
     //TODO: figure out a better event propagation mechanism
     // Here's part of the issue: https://stackoverflow.com/questions/3277369/how-to-simulate-a-click-by-using-x-y-coordinates-in-javascript/78993824#78993824
     //QUICKFIX: privileged elements stop propagating a click event.
-    if (element.classList.contains("stops-events")) break
+    if (element.classList.contains('stops-events')) break
   }
 }
 
@@ -278,9 +292,9 @@ function getElementsUnder(pointer) {
   let elements = document.elementsFromPoint(pointer.coords.x, pointer.coords.y)
 
   //Ignore elements without an id
-  elements = elements.filter((e) => e.id != "")
+  elements = elements.filter((e) => e.id != '')
   //Ignore the pointer itself
-  elements = elements.filter((e) => e.id != "pointer" + pointer.id)
+  elements = elements.filter((e) => e.id != 'pointer' + pointer.id)
 
   return elements
 }
@@ -295,16 +309,16 @@ function checkHover(pointer) {
   if (prevHoveredElement != currentHoveredElement) {
     //Update the hover counter of the previous element (if there's one)
     if (prevHoveredElement) {
-      addToDataAttribute(prevHoveredElement, "hovered", -1)
-      $(prevHoveredElement).trigger("mouseleave", { pointer: pointer })
+      addToDataAttribute(prevHoveredElement, 'hovered', -1)
+      $(prevHoveredElement).trigger('mouseleave', { pointer: pointer })
     }
     //Update the pointer state
     pointer.hoveredElement = currentHoveredElement ? currentHoveredElement.id : null
     instance.pointers.set(pointer.id, pointer)
     //Update the hover counter of the new element (if there's one)
     if (currentHoveredElement) {
-      addToDataAttribute(currentHoveredElement, "hovered", 1)
-      $(currentHoveredElement).trigger("mouseenter", { pointer: pointer })
+      addToDataAttribute(currentHoveredElement, 'hovered', 1)
+      $(currentHoveredElement).trigger('mouseenter', { pointer: pointer })
     }
   }
 }
@@ -356,7 +370,7 @@ function createBot(id) {
 TellShowWeFinishedDisplayingParagraph = function (text) {
   switch (text) {
     // ACTE II
-    case "Bonjour!":
+    case 'Bonjour!':
       // les joueureuses/bots apparaissent (fade in)
       ;[...bots, ...players].forEach((p) => {
         pointer = instance.pointers.get(p.id)
@@ -364,21 +378,21 @@ TellShowWeFinishedDisplayingParagraph = function (text) {
         instance.pointers.set(p.id, pointer)
       })
       break
-    case "Est-ce que vous pourriez vous rassembler devant moi?":
+    case 'Est-ce que vous pourriez vous rassembler devant moi?':
       ;[...bots].forEach((p) => {
         pointer = instance.pointers.get(p.id)
         regroupRoutine(pointer)
         instance.pointers.set(p.id, pointer)
       })
       break
-    case "est-ce que vous pourriez essayer de faire un cercle autour de moi?":
+    case 'est-ce que vous pourriez essayer de faire un cercle autour de moi?':
       ;[...bots].forEach((p) => {
         pointer = instance.pointers.get(p.id)
         circleRoutine(pointer)
         instance.pointers.set(p.id, pointer)
       })
       break
-    case "peut-être que ce serait mieux? merci vous êtes sympas.":
+    case 'peut-être que ce serait mieux? merci vous êtes sympas.':
       // les joueureuses doivent faire un carré autour de samuel
       ;[...bots].forEach((p) => {
         pointer = instance.pointers.get(p.id)
@@ -390,36 +404,54 @@ TellShowWeFinishedDisplayingParagraph = function (text) {
       // les joueureuses doivent se mettre sur un axe en fonction de leurs revenus
       ;[...bots].forEach((p) => {
         pointer = instance.pointers.get(p.id)
-        axisRoutine(pointer, { xMin: 200, xMax: instance.windowBoundaries.width - 200, y: instance.windowBoundaries.height * 0.46 })
+        axisRoutine(pointer, {
+          xMin: 200,
+          xMax: instance.windowBoundaries.width - 200,
+          y: instance.windowBoundaries.height * 0.46,
+        })
         instance.pointers.set(p.id, pointer)
       })
       break
-    case "du genre":
+    case 'du genre':
       // les joueureuses doivent se mettre sur un axe en fonction de la dernière fois qu'iels ont mangé
       ;[...bots].forEach((p) => {
         pointer = instance.pointers.get(p.id)
-        axisRoutine(pointer, { xMin: 200, xMax: instance.windowBoundaries.width - 200, y: instance.windowBoundaries.height * 0.73 })
+        axisRoutine(pointer, {
+          xMin: 200,
+          xMax: instance.windowBoundaries.width - 200,
+          y: instance.windowBoundaries.height * 0.73,
+        })
         instance.pointers.set(p.id, pointer)
       })
       break
-    case "ou alors je sais pas, pourquoi pas ça sinon":
+    case 'ou alors je sais pas, pourquoi pas ça sinon':
       ;[...bots].forEach((p) => {
         pointer = instance.pointers.get(p.id)
-        graphRoutine(pointer, { xMin: instance.windowBoundaries.width * 0.25, xMax: instance.windowBoundaries.width * 0.75, yMin: instance.windowBoundaries.height * 0.12, yMax: instance.windowBoundaries.height * 0.77 })
+        graphRoutine(pointer, {
+          xMin: instance.windowBoundaries.width * 0.25,
+          xMax: instance.windowBoundaries.width * 0.75,
+          yMin: instance.windowBoundaries.height * 0.12,
+          yMax: instance.windowBoundaries.height * 0.77,
+        })
         instance.pointers.set(p.id, pointer)
       })
       break
 
-    case "hmmm":
+    case 'hmmm':
       //Fin du minijeu de positionnement: les bots retournent à leur "maison"
       ;[...bots].forEach((p) => {
         pointer = instance.pointers.get(p.id)
-        pointer.events.push({ type: "humanizedMove", from: null, to: pointer.homeCoords ?? { x: 0, y: 0 }, duration: randomBetween(2000, 3000) })
+        pointer.events.push({
+          type: 'humanizedMove',
+          from: null,
+          to: pointer.homeCoords ?? { x: 0, y: 0 },
+          duration: randomBetween(2000, 3000),
+        })
         instance.pointers.set(p.id, pointer)
       })
       break
 
-    case "pour en revenir au pointeur de souris":
+    case 'pour en revenir au pointeur de souris':
       ;[...bots].forEach((p) => {
         pointer = instance.pointers.get(p.id)
         playgroundRoutine(pointer)

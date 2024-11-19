@@ -1,0 +1,30 @@
+<template name="pupitre">
+  <div>
+    <div class="m-6">
+      <h1 class="italic">Pupitre</h1>
+    </div>
+
+    <div class="ml-4">
+      <div class="grid grid-cols-5 gap-4 p-4 h-full">
+        <div>
+          {{#each getHeaders}}
+          <div>
+            <span class="cursor-pointer underline hover:text-blue-600 header"> {{ key }} </span>
+          </div>
+          {{/each}}
+        </div>
+        <div class="col-span-3" id="textLinesColumn">
+          {{#each getContent}}
+          <div class="mb-2">
+            <a class="focus:bg-red-50 cursor-pointer hover:text-blue-600 p-2 line" tabindex="0">
+              {{ this }}
+            </a>
+          </div>
+          {{/each}}
+        </div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
+</template>

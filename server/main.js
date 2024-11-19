@@ -1,7 +1,6 @@
 import { Meteor } from 'meteor/meteor'
 import { streamer } from '../both/streamer.js'
 import './parser.js'
-import { text } from '../both/text'
 
 const description = "Playtest de Novembre '24 au Melies."
 
@@ -22,6 +21,11 @@ streamer.on('pointerMessage', function (message) {
 
 Meteor.startup(async () => {
   console.log('nuking all clients ')
-  text = parseMarkdown(Assets.absoluteFilePath('text.md'))
-  console.log(text)
+})
+
+Meteor.methods({
+  async returnText() {
+    text = parseMarkdown(Assets.absoluteFilePath('text.md'))
+    return text
+  },
 })

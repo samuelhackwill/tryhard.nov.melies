@@ -1,6 +1,11 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./client/*.{js,html}", "./client/components/*.{hs,html}", "./client/components/talkBox/*.{js,html}"],
+  content: [
+    './client/*.{js,html}',
+    './client/components/*.{hs,html}',
+    './client/components/*/*.{js,html}',
+    './client/pages/*.{js,html}',
+  ],
   theme: {
     extend: {
       backgroundImage: {
