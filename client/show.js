@@ -1,7 +1,6 @@
 import { Template } from "meteor/templating"
 import { ReactiveDict } from "meteor/reactive-dict"
 import { streamer } from "../both/streamer.js"
-import { FlowRouter } from "meteor/ostrio:flow-router-extra"
 import { getRandomBossAccessory, getRandomAccessory } from "./dressup.js"
 import { getRandomTree } from "./trees.js"
 import { stepper } from "./stepper.js"

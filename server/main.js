@@ -1,7 +1,7 @@
 import { Meteor } from "meteor/meteor"
 import { streamer } from "../both/streamer.js"
 
-const description = "Test de performance de la connection DDP. On teste d'utiliser la réactivité meteor out of the box pour voir si c'est crédible avec x pointeurs de souris en temps réél."
+const description = "Playtest de Novembre '24 au Melies."
 
 WebApp.connectHandlers.use("/api/hello", (req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*") // Allow all origins (use specific domains for more security)
