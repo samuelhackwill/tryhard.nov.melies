@@ -54,7 +54,10 @@ clic clic clic clic clic clic clic clic clic! -->
 
 ## intro
 
-`startRace(intro)`
+`startRace`
+
+<!-- la première course on la compte en dizièmes de seconde, ça commence à l'entrée public lol et du coup  -->
+
 il était une fois
 un groupe de personnes
 qui avaient tous et toutes un rapport différent aux ordinateurs.
@@ -97,12 +100,12 @@ pour nous.
 <!-- sinon ce que j'entrevois c'est que le thème de la pièce c'est participer ou ne pas participer et en fait on rejoue ça plein de fois (le clic invisible, bonjour, etc). -->
 
 pour que nous puissions jouer.
-`endRace(intro)`
+`endRace`
 je veux d'ailleurs m'arrêter un moment pour vérifier si on a déjà commencé à jouer.
 Enfin je veux dire, je sais qu'on a déjà commencer à jouer
-mais est ce que vous avez commencé à jouer?
+mais est ce que _vous_ avez commencé à jouer?
 d'après mes calculs :
-`showScore(intro)`
+`showScore`
 
 <!-- <x> personnes ont déjà commencé à jouer. -->
 
@@ -184,10 +187,13 @@ et puis il y a celles et ceux qui ont cliqué, soit :
    pourquoi donner des souris à un groupe de personnes si on sait exactement à l'avance tout ce qui va se passer?
    pourquoi vous proposer de cliquer s'il n'existait pas aussi la possibilité que vous ne cliquiez pas?
 
+<!--
 ## intro-score-mmo
 
 avant de passer à la suite je vais vous montrer tout de même comment votre performance se compare à celle des autres publics qui ont assisté à cette performance :
-`showMmoScore(intro)`
+`showScore` -->
+
+<!-- maybe keep this for later? we can select the souris de la personne qui a gagné et hop clavier virtuel pour qu'elle choisisse son nick -->
 
 ## pointer-1p
 
@@ -196,7 +202,8 @@ jouons
 cette fois je vous donne le but du jeu :
 à mon top, le jeu c'est de cliquer sur sa souris.
 top
-`startRace(pointer)`
+`startRace`
+`endRace`
 
 ## pointer-1p-win
 
@@ -229,7 +236,7 @@ votre doigt élu enfonçant le bouton de la souris
 
 <!-- donc là y'a un bouton saluer la foule qui apparaît, et ensuite ça part en jeu des captchas? juste pour y recycler? vraiment? peut être que c'est juste "je ne suis pas un robot", juste une fois, et ensuite on va le refaire à chaque fois que quelqu'un veut cliquer sur le bouton pour saluer la foule en multiplayer.-->
 
-{Atalante de Paris 4}, profitant du fait qu'elle a maintenant un curseur, une faculté d'agir sur le monde, peut maintenant tendre de réduire cette injustice qui fait qu'elle est la seule à pouvoir interagir avec la performance.
+_Atalante de Paris 4_, profitant du fait qu'elle a maintenant un curseur, une faculté d'agir sur le monde, peut maintenant tendre de réduire cette injustice qui fait qu'elle est la seule à pouvoir interagir avec la performance.
 
 `showP2`
 
@@ -243,7 +250,6 @@ nous dit Ovide
 et là où Atalante est la première à cliquer
 Méléagre est celui qui donne le coup de grâce au sanglier.
 
-`showBtnSaluerLaFoule`
 `showBtnStartMMO`
 
 ## pointer-2p-salue-la-foule
@@ -252,23 +258,23 @@ Méléagre est celui qui donne le coup de grâce au sanglier.
 
 ## pointer-1p-salue-la-foule
 
-{Atalante de Paris 4}, Triomphante, salue la foule.
-{Atalante de Paris 4}, solaire, balaye la foule du regard
-{Atalante de Paris 4} harangue le peuple des spectateurs
-{Atalante de Paris 4} clique de manière frénétique pour enivrer la foule
-{Atalante de Paris 4} montre ses biceps à tout le monde
-{Atalante de Paris 4} prend un enfant que la foule lui tend et l'assied sur ses genoux
-{Atalante de Paris 4} crie à l'assemblée que l'avenir sera prospère et stable
-{Atalante de Paris 4}, crie : "c'est moi qui ait cliqué en premier!"
-{Atalante de Paris 4}, crie : "mais bientôt, vous cliquerez aussi!"
-{Atalante de Paris 4}, crie : "nous cliquerons tous ensemble pour la plus grande Interactivité!"
-{Atalante de Paris 4}, crie : "tous ensemble, clic, clic"
-{Atalante de Paris 4}, crie : "je viens du peuple, je suis comme vous!"
-{Atalante de Paris 4}, crie : "toutes choses égales par ailleurs"
-{Atalante de Paris 4}, crie : "j'ai été appelée"
-{Atalante de Paris 4}, crie : "pour cliquer en votre nom"
-{Atalante de Paris 4}, crie : "il y a un autre bouton sur l'écran mais je vais pas cliquer dessus tout de suite!"
-{Atalante de Paris 4}, crie : "je fais ce que je veux c'est moi qui ait la souris!"
+_Atalante de Paris 4_, Triomphante, salue la foule.
+_Atalante de Paris 4_, solaire, balaye la foule du regard
+_Atalante de Paris 4_ harangue le peuple des spectateurs
+_Atalante de Paris 4_ clique de manière frénétique pour enivrer la foule
+_Atalante de Paris 4_ montre ses biceps à tout le monde
+_Atalante de Paris 4_ prend un enfant que la foule lui tend et l'assied sur ses genoux
+_Atalante de Paris 4_ crie à l'assemblée que l'avenir sera prospère et stable
+_Atalante de Paris 4_, crie : "c'est moi qui ait cliqué en premier!"
+_Atalante de Paris 4_, crie : "mais bientôt, vous cliquerez aussi!"
+_Atalante de Paris 4_, crie : "nous cliquerons tous ensemble pour la plus grande Interactivité!"
+_Atalante de Paris 4_, crie : "tous ensemble, clic, clic"
+_Atalante de Paris 4_, crie : "je viens du peuple, je suis comme vous!"
+_Atalante de Paris 4_, crie : "toutes choses égales par ailleurs"
+_Atalante de Paris 4_, crie : "j'ai été appelée"
+_Atalante de Paris 4_, crie : "pour cliquer en votre nom"
+_Atalante de Paris 4_, crie : "il y a un autre bouton sur l'écran mais je vais pas cliquer dessus tout de suite!"
+_Atalante de Paris 4_, crie : "je fais ce que je veux c'est moi qui ait la souris!"
 `loop(pointer-1p-salue-la-foule)`
 
 <!-- ok donc ce qui va se passer ensuite c'est que y'a le bouton "faire apparaître tout le monde" et le bouton "faire apparaître le sanglier de machin". et ensuite mini-jeu où il faut tuer le sanglier. -->

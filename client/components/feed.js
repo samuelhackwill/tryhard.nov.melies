@@ -1,6 +1,8 @@
 import './feed.html'
 import { streamer } from '../../both/streamer.js'
 
+let emphasisTrigger = false
+
 Template.feed.onCreated(function () {
   streamer.on('pupitreMessage', handlePupitreMessage)
 })
@@ -13,8 +15,18 @@ function handlePupitreMessage(message) {
     'text-white text-6xl mb-6 feedItem transition-opacity duration-1000 select-none'
 
   message.content.split('').forEach((char) => {
+    // si c'est une étoile, passe en mode emphasis
+    // si c'est une deuxième étoile passe en mode fin de l'emphasis
+    if (char == '_') {
+      emphasisTrigger = !emphasisTrigger
+      return
+    }
     const span = document.createElement('span')
-    span.className = 'opacity-0'
+    if (emphasisTrigger === true) {
+      span.className = 'opacity-0 italic !font-serif !text-yellow-100'
+    } else {
+      span.className = 'opacity-0'
+    }
     span.textContent = char // Assign the character to the span
     feedItem.appendChild(span) // Append the span to the div
   })
@@ -55,6 +67,6 @@ function handlePupitreMessage(message) {
   } else {
     Meteor.setTimeout(() => {
       feed.children[1].style.opacity = '0.2'
-    }, 100)
+    }, 0)
   }
 }

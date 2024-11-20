@@ -8,10 +8,6 @@ function sanitizeKey(header) {
     .replace(/\s+/g, '-') // Replace spaces with hyphens
 }
 
-function transformEmphasis(text) {
-  return text.replace(/_(.*?)_/g, '<span class="emphasis">$1</span>') // Convert _text_ to <span> tags
-}
-
 parseMarkdown = function (filePath) {
   const fileContent = fs.readFileSync(filePath, 'utf8')
 
@@ -19,21 +15,24 @@ parseMarkdown = function (filePath) {
   const uncommentedContent = fileContent.replace(/<!--[\s\S]*?-->/g, '')
 
   const lines = uncommentedContent.split('\n')
-  const result = {}
-  let currentKey = null
+  const result = []
+  let currentHeader = null
 
   for (let line of lines) {
     line = line.trim()
 
     // If line is a header
     if (line.startsWith('## ')) {
-      currentKey = sanitizeKey(line.slice(3)) // Extract header and sanitize
-      result[currentKey] = []
-    } else if (currentKey && line && !line.startsWith('-')) {
-      // Normal line, not part of a list and not empty
-      result[currentKey].push(transformEmphasis(line))
+      currentHeader = sanitizeKey(line.slice(3)) // Extract header and sanitize
+      result.push({ header: currentHeader, content: [] })
+    } else if (currentHeader && line) {
+      // Determine the type of the line (text or command)
+      const type = line.startsWith('`') && line.endsWith('`') ? 'command' : 'text'
+      const value = line.startsWith('`') && line.endsWith('`') ? line.slice(1, -1) : line
+
+      // Add the parsed line to the current section
+      result[result.length - 1].content.push({ type, value })
     }
   }
-
   return result
 }

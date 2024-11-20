@@ -10,7 +10,7 @@
           {{#each getHeaders}}
           <div>
             <span class="select-none cursor-pointer underline hover:text-blue-600 header">
-              {{ key }}
+              {{ this }}
             </span>
           </div>
           {{/each}}
@@ -19,10 +19,12 @@
           {{#each getContent}}
           <div class="mb-2">
             <a
-              class="focus:bg-blue-50 cursor-pointer select-none hover:text-blue-600 line"
+              class="focus:bg-blue-50 cursor-pointer select-none hover:text-blue-600 line {{
+                styleActions
+              }}"
               tabindex="0"
             >
-              {{ this }}
+              {{ this.value }}
             </a>
           </div>
           {{/each}}

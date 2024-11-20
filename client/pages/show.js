@@ -59,6 +59,9 @@ Template.show.onCreated(function () {
   //Listen to logger events (one message whenever a pointer moves or clicks)
   streamer.on('pointerMessage', handlePointerMessage)
 
+  //Listen to admin calls to action (like displaying score ou quoi)
+  streamer.on('pupitreAction', handlePupitreAction)
+
   //Create 96 bots
   this.bots = [] //Keep the array of bots on hand, it's easier than filtering this.pointers every time
   for (let i = 0; i < 96; i++) {
@@ -105,6 +108,17 @@ Template.show.onRendered(function () {
     }
   })
 })
+
+function handlePupitreAction(message) {
+  switch (message.content) {
+    case 'startRace-intro':
+      console.log('fuckkkkk yeahhh')
+      break
+
+    default:
+      break
+  }
+}
 
 function handlePointerMessage(message) {
   console.log('debug ', message)
