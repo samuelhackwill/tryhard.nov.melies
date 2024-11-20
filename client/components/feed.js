@@ -11,11 +11,43 @@ function handlePupitreMessage(message) {
   const feedItem = document.createElement('div')
   feedItem.className =
     'text-white text-6xl mb-6 feedItem transition-opacity duration-1000 select-none'
-  feedItem.textContent = message.content
+
+  message.content.split('').forEach((char) => {
+    const span = document.createElement('span')
+    span.className = 'opacity-0'
+    span.textContent = char // Assign the character to the span
+    feedItem.appendChild(span) // Append the span to the div
+  })
 
   feed.prepend(feedItem)
 
-  console.log(feed.children)
+  // TYPING ANIMATION HERE
+  Meteor.setTimeout(() => {
+    index = 0
+    arr = [...feed.children[0].children]
+
+    prout = Meteor.setInterval(() => {
+      if (index > arr.length - 1) {
+        Meteor.clearInterval(prout)
+        return
+      }
+      arr[index].style.opacity = 1
+      index = index + 1
+    }, 5)
+  }, 0)
+
+  // ALTERNATIVE TYPING ANIMATION HERE, SLOWER BUT MORE FLUID.
+  // function revealChar() {
+  //   if (index >= arr.length) return
+
+  //   arr[index].style.opacity = 1
+  //   index++
+  //   requestAnimationFrame(revealChar)
+  // }
+
+  // requestAnimationFrame(revealChar)
+
+  // ANIMATION OF AVANT-DERNIERE LINE HERE
 
   // we need to fade all the lines as they are added, but not the first one. The feed has an empty children so length is 3 when we've only got 2 lines of test for some reason.
   if (feed.children.length < 2) {
