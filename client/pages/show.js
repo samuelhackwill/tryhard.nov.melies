@@ -1,32 +1,31 @@
 import { Template } from 'meteor/templating'
 import { ReactiveDict } from 'meteor/reactive-dict'
 import { streamer } from '../../both/streamer.js'
-import { getRandomBossAccessory, getRandomAccessory } from '../dressup.js'
-import { getRandomTree } from '../trees.js'
 import { stepper } from '../stepper.js'
-import {
-  sendToSides,
-  circleRoutine,
-  dressupAnimation,
-  killAnimation,
-  treePickUpAnimation,
-} from '../bots.js'
-import {
-  resetRoutine,
-  welcomeRoutine,
-  regroupRoutine,
-  squareRoutine,
-  playgroundRoutine,
-  axisRoutine,
-  graphRoutine,
-} from '../bots.js'
-import { randomBetween } from '../../both/math-helpers.js'
+// import { getRandomBossAccessory, getRandomAccessory } from '../dressup.js'
+// import { getRandomTree } from '../trees.js'
+// import {
+//   sendToSides,
+//   circleRoutine,
+//   dressupAnimation,
+//   killAnimation,
+//   treePickUpAnimation,
+// } from '../bots.js'
+// import {
+//   resetRoutine,
+//   welcomeRoutine,
+//   regroupRoutine,
+//   squareRoutine,
+//   playgroundRoutine,
+//   axisRoutine,
+//   graphRoutine,
+// } from '../bots.js'
+// import { randomBetween } from '../../both/math-helpers.js'
+
+import { handlePupitreMessage } from '../components/feed.js'
 
 import '../components/main.js'
 import './show.html'
-
-import { states, events, transition, triggers } from '../FSMs/showFSM.js'
-import { GlobalEvents, GlobalEvent } from '../FSMs/globalEvents.js'
 
 let eventQueue = []
 let pointers = []
@@ -34,10 +33,10 @@ let bots = []
 let players = []
 
 Template.show.onCreated(function () {
-  this.currentState = new ReactiveVar(states.INITIAL)
+  this.scoreSprintEntreePublic = new ReactiveDict()
+  this.scoreSprint1p = new ReactiveDict()
   this.areNamesHidden = new ReactiveVar(true)
   this.plantedTrees = new ReactiveDict()
-  // Initialize the reactive dictionary to keep track of each client's pointer position.
   this.pointers = new ReactiveDict()
 
   this.windowBoundaries = { x: 0, y: 0, width: window.innerWidth, height: window.innerHeight - 60 }
@@ -62,19 +61,19 @@ Template.show.onCreated(function () {
   //Listen to admin calls to action (like displaying score ou quoi)
   streamer.on('pupitreAction', handlePupitreAction)
 
-  //Create 96 bots
-  this.bots = [] //Keep the array of bots on hand, it's easier than filtering this.pointers every time
-  for (let i = 0; i < 96; i++) {
-    let bot = createBot('bot' + i)
-    //QUICKFIX: set a default state (hidden, not dead, etc). Probably should be done elsewhere
-    resetRoutine(bot)
-    this.pointers.set(bot.id, bot)
-    bots.push(bot)
-  }
-  //Keep this around: it gives bots a home position
-  sendToSides(bots, this.windowBoundaries)
+  // //Create 96 bots
+  // this.bots = [] //Keep the array of bots on hand, it's easier than filtering this.pointers every time
+  // for (let i = 0; i < 96; i++) {
+  //   let bot = createBot('bot' + i)
+  //   //QUICKFIX: set a default state (hidden, not dead, etc). Probably should be done elsewhere
+  //   resetRoutine(bot)
+  //   this.pointers.set(bot.id, bot)
+  //   bots.push(bot)
+  // }
+  // //Keep this around: it gives bots a home position
+  // sendToSides(bots, this.windowBoundaries)
 
-  bots.forEach((b) => this.pointers.set(b.id, b))
+  // bots.forEach((b) => this.pointers.set(b.id, b))
 })
 Template.show.onDestroyed(function () {
   //Stop the stepper
@@ -85,34 +84,36 @@ Template.show.onDestroyed(function () {
 })
 Template.show.onRendered(function () {
   streamer.emit('showInit', { width: window.innerWidth, height: window.innerHeight })
-
-  this.autorun(() => {
-    // console.log("show RE-RENDERING because of global event : ", GlobalEvent.get())
-
-    if (!GlobalEvent.get()) {
-      return
-    } else {
-      // global events should always have the value
-      // of the key of a local FSM event.
-      // got it?
-
-      // so for instance, if we want to trigger a transition
-      // to Acte1s2 (showFSM > events.goToA1s2)
-      // we should call a global event using the key
-      // GlobalEvents.goToAIs2
-
-      key = GlobalEvent.get()
-      console.log('GlobalEvents[key] ', GlobalEvents[key])
-      transition(GlobalEvents[key], this)
-      GlobalEvent.set(null)
-    }
-  })
 })
 
 function handlePupitreAction(message) {
   switch (message.content) {
-    case 'startRace-intro':
-      console.log('fuckkkkk yeahhh')
+    case 'startRace-sprint-entree-public':
+      instance.scoreSprintEntreePublic.set('startTime', new Date())
+      break
+    case 'endRace-sprint-entree-public':
+      instance.scoreSprintEntreePublic.set('endTime', new Date())
+      break
+    case 'countPlayers-sprint-entree-public':
+      // we need to substract 2 because 2 of the objects of scroSprintEntreePublic are startTime and endTime
+      let plural = ''
+      let text = ''
+      let count = Object.keys(instance.scoreSprintEntreePublic.all()).length - 2
+
+      if (count > 1 || count == 0) {
+        plural = 's'
+        text = `${count} personne${plural} ont déjà commencé à jouer.`
+      } else {
+        text =
+          "oups Samuel a oublié de lancer la course! _again!_ Ou alors il y a un bug peut-être, auquel cas pardon Samuel d'avoir été passif-agressif. Enfin ceci dit si y'a un bug c'est aussi de ma faute donc bon"
+      }
+      console.log(text)
+      handlePupitreMessage({ type: 'newLine', content: text })
+
+      break
+
+    case 'startRace-sprint-1p':
+      instance.scoreSprint1p.set('startTime', new Date())
       break
 
     default:
@@ -121,7 +122,7 @@ function handlePupitreAction(message) {
 }
 
 function handlePointerMessage(message) {
-  console.log('debug ', message)
+  // console.log('debug ', message)
   let pointer = instance.pointers.get(message.loggerId)
 
   //We don't know this pointer yet.
@@ -150,15 +151,6 @@ function handlePointerMessage(message) {
 }
 
 Template.show.helpers({
-  isItActe2s1() {
-    state = Template.instance().currentState.get()
-    if (state != 'INITIAL' && state != 'ACTE1s1' && state != 'ACTE1s2' && state != 'ACTE3s1') {
-      return true
-    } else {
-      return false
-    }
-  },
-
   areNamesHidden() {
     if (Template.instance().areNamesHidden.get() === true) {
       return 'opacity-0'
@@ -186,9 +178,6 @@ Template.show.helpers({
   allPlantedTrees() {
     return Object.values(instance.plantedTrees.all())
   },
-  showState() {
-    return [Template.instance().currentState.get()]
-  },
   isAdmin() {
     return true
   },
@@ -205,11 +194,49 @@ Template.show.events({
   },
 
   'click #background'(event, tpl, extra) {
+    console.log('click background')
     if (!extra) return
     let pointer = instance.pointers.get(extra.pointer.id)
     if (!pointer) {
       return
     }
+
+    //Is it currently the 1p sprint race?
+    // sprint-1p?
+    if (instance.scoreSprint1p.get('startTime') && !instance.scoreSprint1p.get('endTime')) {
+      instance.scoreSprint1p.set('endTime', new Date())
+      const _id = extra.pointer.id
+
+      document.getElementById('pointer' + _id).style.transform = 'scale(1000)'
+
+      document.getElementById('pointer' + _id).classList.remove('opacity-0')
+
+      Meteor.setTimeout(() => {
+        document
+          .getElementById('pointer' + _id)
+          .classList.add('transition-transform', 'duration-[1s]')
+      }, 50)
+
+      Meteor.setTimeout(() => {
+        document.getElementById('pointer' + _id).style.transform = ''
+      }, 100)
+    }
+
+    //Is it currently the entree public sprint race?
+    // sprint-entree-public?
+    if (
+      instance.scoreSprintEntreePublic.get('startTime') &&
+      !instance.scoreSprintEntreePublic.get('endTime') &&
+      !instance.scoreSprintEntreePublic.get(extra.pointer.id)
+    ) {
+      // the race has started but isn't finished and the reactiveDict doesn't already contain a log for that pointer's id.
+      const finishTime = new Date()
+      const score = finishTime - instance.scoreSprintEntreePublic.get('startTime')
+
+      // score is in milisecs
+      instance.scoreSprintEntreePublic.set(extra.pointer.id, { time: score })
+    }
+
     //Does the pointer currently hold a tree?
     if (pointer.tree) {
       //Make up a new tree identifier (they're sequential)
@@ -237,42 +264,42 @@ Template.show.events({
       }
     }
   },
-  'click #folderVestiaire'(event, tpl, extra) {
-    if (!extra) return //No extra data was provided: we don't know which pointer clicked?
-    let pointer = instance.pointers.get(extra.pointer.id)
-    //Don't let locked pointers change their accessories
-    if (pointer.locked) return
+  // 'click #folderVestiaire'(event, tpl, extra) {
+  //   if (!extra) return //No extra data was provided: we don't know which pointer clicked?
+  //   let pointer = instance.pointers.get(extra.pointer.id)
+  //   //Don't let locked pointers change their accessories
+  //   if (pointer.locked) return
 
-    //Clear the event queue (this helps bot dress up immediately, humans probably don't have events)
-    pointer.events = []
+  //   //Clear the event queue (this helps bot dress up immediately, humans probably don't have events)
+  //   pointer.events = []
 
-    if (pointer.id == 'samuel') {
-      dressupAnimation(pointer, getRandomBossAccessory())
-    } else {
-      dressupAnimation(pointer, getRandomAccessory())
-    }
+  //   if (pointer.id == 'samuel') {
+  //     dressupAnimation(pointer, getRandomBossAccessory())
+  //   } else {
+  //     dressupAnimation(pointer, getRandomAccessory())
+  //   }
 
-    instance.pointers.set(pointer.id, pointer)
-  },
-  'click #folderTrees'(event, tpl, extra) {
-    if (!extra) return //No extra data was provided: we don't know which pointer clicked?
-    let pointer = instance.pointers.get(extra.pointer.id)
+  //   instance.pointers.set(pointer.id, pointer)
+  // },
+  // 'click #folderTrees'(event, tpl, extra) {
+  //   if (!extra) return //No extra data was provided: we don't know which pointer clicked?
+  //   let pointer = instance.pointers.get(extra.pointer.id)
 
-    //Don't let locked pointers change their accessories
-    if (pointer.locked) return
+  //   //Don't let locked pointers change their accessories
+  //   if (pointer.locked) return
 
-    treePickUpAnimation(pointer, getRandomTree())
+  //   treePickUpAnimation(pointer, getRandomTree())
 
-    instance.pointers.set(pointer.id, pointer)
-  },
-  'click #folderAdmin'(event, tpl, extra) {
-    if (extra) {
-      instance.adminPosition.set([extra.pointer.coords.x, extra.pointer.coords.y])
-    } else {
-      instance.adminPosition.set([event.pageX, event.pageY])
-    }
-    GlobalEvent.set(GlobalEvents.OUVRIR_LA_FNET)
-  },
+  //   instance.pointers.set(pointer.id, pointer)
+  // },
+  // 'click #folderAdmin'(event, tpl, extra) {
+  //   if (extra) {
+  //     instance.adminPosition.set([extra.pointer.coords.x, extra.pointer.coords.y])
+  //   } else {
+  //     instance.adminPosition.set([event.pageX, event.pageY])
+  //   }
+  //   GlobalEvent.set(GlobalEvents.OUVRIR_LA_FNET)
+  // },
 })
 
 simulateMouseUp = function (pointer) {
@@ -382,105 +409,105 @@ function createBot(id) {
 
 //Receives the text that finished displaying in the lettreur.
 //We can check what's displayed and react accordingly (eg launch a bot routine)
-TellShowWeFinishedDisplayingParagraph = function (text) {
-  switch (text) {
-    // ACTE II
-    case 'Bonjour!':
-      // les joueureuses/bots apparaissent (fade in)
-      ;[...bots, ...players].forEach((p) => {
-        pointer = instance.pointers.get(p.id)
-        welcomeRoutine(pointer)
-        instance.pointers.set(p.id, pointer)
-      })
-      break
-    case 'Est-ce que vous pourriez vous rassembler devant moi?':
-      ;[...bots].forEach((p) => {
-        pointer = instance.pointers.get(p.id)
-        regroupRoutine(pointer)
-        instance.pointers.set(p.id, pointer)
-      })
-      break
-    case 'est-ce que vous pourriez essayer de faire un cercle autour de moi?':
-      ;[...bots].forEach((p) => {
-        pointer = instance.pointers.get(p.id)
-        circleRoutine(pointer)
-        instance.pointers.set(p.id, pointer)
-      })
-      break
-    case 'peut-être que ce serait mieux? merci vous êtes sympas.':
-      // les joueureuses doivent faire un carré autour de samuel
-      ;[...bots].forEach((p) => {
-        pointer = instance.pointers.get(p.id)
-        squareRoutine(pointer)
-        instance.pointers.set(p.id, pointer)
-      })
-      break
-    case "au milieu j'ai mis le salaire net médian en 2022 à titre de comparaison.":
-      // les joueureuses doivent se mettre sur un axe en fonction de leurs revenus
-      ;[...bots].forEach((p) => {
-        pointer = instance.pointers.get(p.id)
-        axisRoutine(pointer, {
-          xMin: 200,
-          xMax: instance.windowBoundaries.width - 200,
-          y: instance.windowBoundaries.height * 0.46,
-        })
-        instance.pointers.set(p.id, pointer)
-      })
-      break
-    case 'du genre':
-      // les joueureuses doivent se mettre sur un axe en fonction de la dernière fois qu'iels ont mangé
-      ;[...bots].forEach((p) => {
-        pointer = instance.pointers.get(p.id)
-        axisRoutine(pointer, {
-          xMin: 200,
-          xMax: instance.windowBoundaries.width - 200,
-          y: instance.windowBoundaries.height * 0.73,
-        })
-        instance.pointers.set(p.id, pointer)
-      })
-      break
-    case 'ou alors je sais pas, pourquoi pas ça sinon':
-      ;[...bots].forEach((p) => {
-        pointer = instance.pointers.get(p.id)
-        graphRoutine(pointer, {
-          xMin: instance.windowBoundaries.width * 0.25,
-          xMax: instance.windowBoundaries.width * 0.75,
-          yMin: instance.windowBoundaries.height * 0.12,
-          yMax: instance.windowBoundaries.height * 0.77,
-        })
-        instance.pointers.set(p.id, pointer)
-      })
-      break
+// TellShowWeFinishedDisplayingParagraph = function (text) {
+//   switch (text) {
+//     // ACTE II
+//     case 'Bonjour!':
+//       // les joueureuses/bots apparaissent (fade in)
+//       ;[...bots, ...players].forEach((p) => {
+//         pointer = instance.pointers.get(p.id)
+//         welcomeRoutine(pointer)
+//         instance.pointers.set(p.id, pointer)
+//       })
+//       break
+//     case 'Est-ce que vous pourriez vous rassembler devant moi?':
+//       ;[...bots].forEach((p) => {
+//         pointer = instance.pointers.get(p.id)
+//         regroupRoutine(pointer)
+//         instance.pointers.set(p.id, pointer)
+//       })
+//       break
+//     case 'est-ce que vous pourriez essayer de faire un cercle autour de moi?':
+//       ;[...bots].forEach((p) => {
+//         pointer = instance.pointers.get(p.id)
+//         circleRoutine(pointer)
+//         instance.pointers.set(p.id, pointer)
+//       })
+//       break
+//     case 'peut-être que ce serait mieux? merci vous êtes sympas.':
+//       // les joueureuses doivent faire un carré autour de samuel
+//       ;[...bots].forEach((p) => {
+//         pointer = instance.pointers.get(p.id)
+//         squareRoutine(pointer)
+//         instance.pointers.set(p.id, pointer)
+//       })
+//       break
+//     case "au milieu j'ai mis le salaire net médian en 2022 à titre de comparaison.":
+//       // les joueureuses doivent se mettre sur un axe en fonction de leurs revenus
+//       ;[...bots].forEach((p) => {
+//         pointer = instance.pointers.get(p.id)
+//         axisRoutine(pointer, {
+//           xMin: 200,
+//           xMax: instance.windowBoundaries.width - 200,
+//           y: instance.windowBoundaries.height * 0.46,
+//         })
+//         instance.pointers.set(p.id, pointer)
+//       })
+//       break
+//     case 'du genre':
+//       // les joueureuses doivent se mettre sur un axe en fonction de la dernière fois qu'iels ont mangé
+//       ;[...bots].forEach((p) => {
+//         pointer = instance.pointers.get(p.id)
+//         axisRoutine(pointer, {
+//           xMin: 200,
+//           xMax: instance.windowBoundaries.width - 200,
+//           y: instance.windowBoundaries.height * 0.73,
+//         })
+//         instance.pointers.set(p.id, pointer)
+//       })
+//       break
+//     case 'ou alors je sais pas, pourquoi pas ça sinon':
+//       ;[...bots].forEach((p) => {
+//         pointer = instance.pointers.get(p.id)
+//         graphRoutine(pointer, {
+//           xMin: instance.windowBoundaries.width * 0.25,
+//           xMax: instance.windowBoundaries.width * 0.75,
+//           yMin: instance.windowBoundaries.height * 0.12,
+//           yMax: instance.windowBoundaries.height * 0.77,
+//         })
+//         instance.pointers.set(p.id, pointer)
+//       })
+//       break
 
-    case 'hmmm':
-      //Fin du minijeu de positionnement: les bots retournent à leur "maison"
-      ;[...bots].forEach((p) => {
-        pointer = instance.pointers.get(p.id)
-        pointer.events.push({
-          type: 'humanizedMove',
-          from: null,
-          to: pointer.homeCoords ?? { x: 0, y: 0 },
-          duration: randomBetween(2000, 3000),
-        })
-        instance.pointers.set(p.id, pointer)
-      })
-      break
+//     case 'hmmm':
+//       //Fin du minijeu de positionnement: les bots retournent à leur "maison"
+//       ;[...bots].forEach((p) => {
+//         pointer = instance.pointers.get(p.id)
+//         pointer.events.push({
+//           type: 'humanizedMove',
+//           from: null,
+//           to: pointer.homeCoords ?? { x: 0, y: 0 },
+//           duration: randomBetween(2000, 3000),
+//         })
+//         instance.pointers.set(p.id, pointer)
+//       })
+//       break
 
-    case 'pour en revenir au pointeur de souris':
-      ;[...bots].forEach((p) => {
-        pointer = instance.pointers.get(p.id)
-        playgroundRoutine(pointer)
-        instance.pointers.set(p.id, pointer)
-      })
-      break
+//     case 'pour en revenir au pointeur de souris':
+//       ;[...bots].forEach((p) => {
+//         pointer = instance.pointers.get(p.id)
+//         playgroundRoutine(pointer)
+//         instance.pointers.set(p.id, pointer)
+//       })
+//       break
 
-      break
-    case "cachez-vous parce que si j'arrive à vous toucher,":
-      ;[...bots, ...players].forEach((p) => {
-        pointer = instance.pointers.get(p.id)
-        pointer.killable = true
-        instance.pointers.set(p.id, pointer)
-      })
-      break
-  }
-}
+//       break
+//     case "cachez-vous parce que si j'arrive à vous toucher,":
+//       ;[...bots, ...players].forEach((p) => {
+//         pointer = instance.pointers.get(p.id)
+//         pointer.killable = true
+//         instance.pointers.set(p.id, pointer)
+//       })
+//       break
+//   }
+// }

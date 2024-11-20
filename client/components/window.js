@@ -1,11 +1,8 @@
-import "./window.html"
+import './window.html'
 
-import { events } from "./../FSMs/showFSM.js"
-import { GlobalEvent, GlobalEvents } from "../FSMs/globalEvents.js"
+import { checkboxCaptchas } from './../textAssets/captchas.js'
 
-import { checkboxCaptchas } from "./../textAssets/captchas.js"
-
-const feed = new ReactiveVar([{ value: "Je ne suis pas un robot", hasInteracted: false }])
+const feed = new ReactiveVar([{ value: 'Je ne suis pas un robot', hasInteracted: false }])
 const captchaSolved = new ReactiveVar(false)
 const captchaIndex = new ReactiveVar(0)
 
@@ -16,7 +13,7 @@ Template.windowAdmin.helpers({
     let currentView = Template.instance().view
 
     while (currentView != null) {
-      if (currentView.name == "Template.show") {
+      if (currentView.name == 'Template.show') {
         break
       }
       currentView = currentView.parentView
@@ -24,9 +21,9 @@ Template.windowAdmin.helpers({
 
     // console.log("is admin open? ", currentView.templateInstance().isAdminOpen.get())
     if (currentView.templateInstance().isAdminOpen.get() === true) {
-      return "transform: translate(-50%,-50%) scale3d(1, 1, 1);"
+      return 'transform: translate(-50%,-50%) scale3d(1, 1, 1);'
     } else {
-      return "transform: translate(-50%,-50%) scale3d(0, 0, 0);"
+      return 'transform: translate(-50%,-50%) scale3d(0, 0, 0);'
     }
   },
 
@@ -38,17 +35,17 @@ Template.windowAdmin.helpers({
     let currentView = Template.instance().view
 
     while (currentView != null) {
-      if (currentView.name == "Template.show") {
+      if (currentView.name == 'Template.show') {
         break
       }
       currentView = currentView.parentView
     }
     coords = currentView.templateInstance().adminPosition.get()
-    return "left : " + coords[0] + "px; top:" + coords[1] + "px;"
+    return 'left : ' + coords[0] + 'px; top:' + coords[1] + 'px;'
   },
 
   isSpecialButton() {
-    if (this == "LANCER_LE_PLAYTEST") {
+    if (this == 'LANCER_LE_PLAYTEST') {
       return true
     } else {
       return false
@@ -68,10 +65,10 @@ Template.windowAdmin.helpers({
 
   isItCaptchaTime() {
     // "this" is actually the state of SHOW which was passed to its children.
-    if (Template.instance().data.currentState == "ACTE1s2") {
-      return "display : block;"
+    if (Template.instance().data.currentState == 'ACTE1s2') {
+      return 'display : block;'
     } else {
-      return "display : none;"
+      return 'display : none;'
     }
   },
   feed() {
@@ -83,11 +80,11 @@ Template.windowAdmin.helpers({
 })
 
 Template.windowAdmin.events({
-  "click button"() {
+  'click button'() {
     buttonId = String(this)
     GlobalEvent.set(buttonId)
 
-    if (captchaSolved.get() == true && buttonId == "LANCER_LE_PLAYTEST") {
+    if (captchaSolved.get() == true && buttonId == 'LANCER_LE_PLAYTEST') {
       GlobalEvent.set(GlobalEvents.VRAIMENT_LANCER_LE_PLAYTEST)
     }
   },
@@ -100,7 +97,7 @@ Template.captcha.helpers({
 })
 
 Template.captcha.events({
-  "click input"() {
+  'click input'() {
     index = captchaIndex.get()
 
     if (index < checkboxCaptchas.length) {
@@ -119,7 +116,7 @@ Template.captcha.events({
 
     // scroll to bottom
     Meteor.setTimeout(() => {
-      var objDiv = document.getElementById("captchaContainer")
+      var objDiv = document.getElementById('captchaContainer')
       objDiv.scrollTop = objDiv.scrollHeight
     }, 0)
   },

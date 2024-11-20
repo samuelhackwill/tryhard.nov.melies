@@ -9,10 +9,8 @@
   <div class="milieuContainer">
     {{#each allPointers getAdmin=false}}
     <div
-      class="bg-cursor bg-contain pointer w-[30px] h-[50px] bg-no-repeat"
-      style="position:absolute; left:{{ this.coords.x }}px; top:{{ this.coords.y }}px; opacity:{{
-        this.opacity
-      }}"
+      class="bg-cursor bg-contain pointer w-[30px] h-[50px] bg-no-repeat opacity-0"
+      style="position:absolute; left:{{ this.coords.x }}px; top:{{ this.coords.y }}px;"
       pointer-id="{{ this.id }}"
       id="pointer{{ this.id }}"
     >

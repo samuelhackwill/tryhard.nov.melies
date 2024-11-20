@@ -7,7 +7,7 @@ Template.feed.onCreated(function () {
   streamer.on('pupitreMessage', handlePupitreMessage)
 })
 
-function handlePupitreMessage(message) {
+export const handlePupitreMessage = function (message) {
   feed = document.getElementById('feed')
 
   const feedItem = document.createElement('div')

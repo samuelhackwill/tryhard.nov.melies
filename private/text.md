@@ -52,14 +52,14 @@ une couleur de clic / joueureuse
 
 clic clic clic clic clic clic clic clic clic! -->
 
-## intro
+## sprint entree public
 
 `startRace`
 
-<!-- la première course on la compte en dizièmes de seconde, ça commence à l'entrée public lol et du coup  -->
+<!-- la première course : tout le monde concourt, on regarde le premier clic et le nombre de coureurs. le top départ c'est l'entrée public, et l'arrivée c'est quand j'arrive au texte des résultats. on ne révèle l'identité du gagnant que beaucoup plus trad dans le show. -->
 
 il était une fois
-un groupe de personnes
+des personnes
 qui avaient tous et toutes un rapport différent aux ordinateurs.
 au sein de ce groupe
 certaines personnes aimaient les ordinateurs
@@ -78,7 +78,7 @@ bercées par les ordinateurs.
 depuis la naissance,
 parce qu'un ordinateur veillait sur leur rythme cardiaque
 jusqu'au tombeau
-parce que quelqu'un utilisera inévitablement un smartphone pour dire l'oraison funèbre.
+parce que quelqu'un utilisera inévitablement un smartphone pour lire l'oraison funèbre.
 
 ---
 
@@ -95,29 +95,26 @@ suspendues au dossier du siège devant elles.
 par moi
 pour nous.
 
-## score-intro
-
 <!-- sinon ce que j'entrevois c'est que le thème de la pièce c'est participer ou ne pas participer et en fait on rejoue ça plein de fois (le clic invisible, bonjour, etc). -->
 
 pour que nous puissions jouer.
 `endRace`
 je veux d'ailleurs m'arrêter un moment pour vérifier si on a déjà commencé à jouer.
-Enfin je veux dire, je sais qu'on a déjà commencer à jouer
+Enfin je veux dire, _je_ sais qu'on a déjà commencer à jouer
 mais est ce que _vous_ avez commencé à jouer?
 d'après mes calculs :
-`showScore`
+`countPlayers`
 
 <!-- <x> personnes ont déjà commencé à jouer. -->
 
----
-
 Ce qui était considéré comme du "jeu" par moi était :
 les clics des souris dans la salle.
+Ce qui n'était pas considéré comme du "jeu" par moi était :
+les mouvements de la souris, les positions dans lesquelles vous êtes assis.e.s, les sons que vous avez volontairement ou involontairement produit avec votre corps,
+le nombre de respirations effectués par le premier rang vs tous les autres rangs dans la salle, votre démarche quand vous êtes entré.e.s dans la salle, la façon dont chaque personne a choisi son siège en fonction de la couleur des vêtements de son voisin,
+ce que vous avez caché dans votre estomac avant d'entrer dans la salle et quel menu cela pourrait constituer si on mutualisait les estomacs de tout le monde.
 
 ---
-
-Ce qui n'était pas considéré comme du "jeu" par moi était :
-les mouvements de la souris, les positions dans lesquelles vous êtes assis.e.s, les sons que vous avez volontairement ou involontairement produit avec votre corps, le nombre de respirations effectués par le premier rang vs tous les autres rangs dans la salle, votre démarche quand vous êtes entré.e.s dans la salle, la façon dont chaque personne a choisi son siège en fonction de la couleur des vêtements de son voisin, ce que vous avez caché dans votre estomac avant d'entrer dans la salle et quel menu cela pourrait constituer si on mutualisait les estomacs de tout le monde.
 
 > si personne n'a cliqué
 
@@ -127,11 +124,13 @@ alors
 il se trouve donc que personne n'a cliqué
 vous n'avez pas commis un crime en ne cliquant pas
 mais aussi je tiens à dire tout de même que mon jeu n'est pas raté
-au prétexte que personne n'a cliqué
+au prétexte que personne n'aurait cliqué
 au contraire, ma façon de voir les choses,
-c'est que vous avez fait preuve d'une très grande maîtrise en résistant collectivement à l'invitation silencieuse produite par la souris, le texte de communication du théâtre, ce que vous savez éventuellement sur moi
-bon alors oui je vous ai jamais donné la consigne de cliquer
+c'est que j'étais en train de tester votre capacité à rester passifs
+or force est de constater que vous avez fait preuve collectivement d'une très grande maîtrise en résistant à l'invitation silencieuse produite par les souris, le texte de communication du théâtre, ce que vous savez éventuellement sur moi, etc
+alors oui
 c'est vrai
+je vous ai jamais donné la consigne de cliquer
 mais c'était ça le jeu
 et vous avez gagné
 puisque de fait en ne cliquant pas
@@ -139,7 +138,9 @@ vous avez agi sur la pièce
 qui prend maintenant une tournure différente.
 parce que le texte que vous êtes en train de lire actuellement
 a été écrit uniquement pour le cas de figure où personne n'aurait cliqué pendant l'introduction.
-les cliqueurs ne l'ont jamais lu.
+les cliqueurs,
+les cliqueurs dans leur hybris devrais-je dire
+ne l'ont jamais lu.
 ce privilège est réservé aux non-cliqueurs que vous êtes.
 
   <!-- le problème ici c'est que si j'encourage la passivité, alors il est inévitable que y'aura des gens déçus quand quelqu'un commence à jouer. -->
@@ -195,7 +196,7 @@ avant de passer à la suite je vais vous montrer tout de même comment votre per
 
 <!-- maybe keep this for later? we can select the souris de la personne qui a gagné et hop clavier virtuel pour qu'elle choisisse son nick -->
 
-## pointer-1p
+## sprint-1p
 
 ok bon et maintenant
 jouons
@@ -204,9 +205,6 @@ cette fois je vous donne le but du jeu :
 top
 `startRace`
 `endRace`
-
-## pointer-1p-win
-
 `showP1`
 bienvenue!
 à la seule et unique personne à qui il est permis de jouer pour le moment.
@@ -366,7 +364,7 @@ Néanmoins, la contemplation et l'action sont les deux jambes qui permettent de 
 
 - agiter sa souris, c'est penser avec son curseur, dit le philosophe informaticien.
 
-- ça ne fera pas mal à la souris, dit le philosophe, car la souris n'a pas de conscience, dit le philosophe spéciste.
+- ça ne fera pas mal à la souris, car la souris n'a pas de conscience, dit le philosophe spéciste.
 
 - ça ne fera pas mal à la souris, car elle est sous sédation profonde et continue jusqu'à la mort, dit le philosophe médecin-anesthésiste.
 
