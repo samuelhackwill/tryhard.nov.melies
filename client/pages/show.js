@@ -34,7 +34,6 @@ let bots = []
 let players = []
 
 Template.show.onCreated(function () {
-  this.feed = new ReactiveVar([])
   this.currentState = new ReactiveVar(states.INITIAL)
   this.areNamesHidden = new ReactiveVar(true)
   this.plantedTrees = new ReactiveDict()
@@ -59,9 +58,6 @@ Template.show.onCreated(function () {
   )
   //Listen to logger events (one message whenever a pointer moves or clicks)
   streamer.on('pointerMessage', handlePointerMessage)
-
-  //Listen to pupitre sending text
-  streamer.on('pupitreMessage', handlePupitreMessage)
 
   //Create 96 bots
   this.bots = [] //Keep the array of bots on hand, it's easier than filtering this.pointers every time
@@ -110,13 +106,6 @@ Template.show.onRendered(function () {
   })
 })
 
-function handlePupitreMessage(message) {
-  _feed = instance.feed.get()
-  _feed.unshift(message)
-
-  instance.feed.set(_feed)
-}
-
 function handlePointerMessage(message) {
   console.log('debug ', message)
   let pointer = instance.pointers.get(message.loggerId)
@@ -147,9 +136,6 @@ function handlePointerMessage(message) {
 }
 
 Template.show.helpers({
-  feedItem() {
-    return Template.instance().feed.get()
-  },
   isItActe2s1() {
     state = Template.instance().currentState.get()
     if (state != 'INITIAL' && state != 'ACTE1s1' && state != 'ACTE1s2' && state != 'ACTE3s1') {
