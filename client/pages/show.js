@@ -116,6 +116,25 @@ function handlePupitreAction(message) {
       instance.scoreSprint1p.set('startTime', new Date())
       break
 
+    case 'showNick-sprint-1p':
+      // get ID of that pointer, associate it with a new nick and show the nick div.
+      data = instance.scoreSprint1p.all()
+      // get everything and then get the smallest score
+      const smallestTime = Object.entries(data).reduce(
+        (min, [key, value]) => {
+          return value.time < min.value.time ? { key, value } : min
+        },
+        { key: null, value: { time: Infinity } },
+      )
+
+      _pointer = instance.pointers.get(smallestTime.key)
+      console.log(_pointer)
+      _pointer.nick = 'Atalante-du-7e-Arrdt'
+      instance.pointers.set(smallestTime.key, _pointer)
+
+      instance.areNamesHidden.set(false)
+      break
+
     default:
       break
   }
@@ -204,8 +223,11 @@ Template.show.events({
     //Is it currently the 1p sprint race?
     // sprint-1p?
     if (instance.scoreSprint1p.get('startTime') && !instance.scoreSprint1p.get('endTime')) {
-      instance.scoreSprint1p.set('endTime', new Date())
       const _id = extra.pointer.id
+
+      const finishTime = new Date()
+      const score = finishTime - instance.scoreSprint1p.get('startTime')
+      instance.scoreSprint1p.set(_id, { time: score })
 
       document.getElementById('pointer' + _id).style.transform = 'scale(1000)'
 

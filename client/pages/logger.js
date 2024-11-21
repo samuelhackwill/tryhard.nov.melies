@@ -17,7 +17,7 @@ Template.logger.onCreated(function () {
     this.loggerId = Date.now().toString() + Math.floor(Math.random() * 1000)
   }
 
-  const instance = this
+  instance = this
 
   document.addEventListener('mousemove', function (event) {
     let coords = {
@@ -51,9 +51,6 @@ Template.logger.onCreated(function () {
   document.addEventListener('mouseup', function (event) {
     sendMessage({ type: 'mouseup', loggerId: instance.loggerId })
   })
-
-  //Listen to logger events (one message whenever a pointer moves or clicks)
-  streamer.on('pupitreAction', handlePupitreAction)
 })
 
 Template.logger.onRendered(function () {
@@ -81,14 +78,4 @@ Template.logger.helpers({
 
 function sendMessage(message) {
   streamer.emit('pointerMessage', message)
-}
-
-handlePupitreAction = function (message) {
-  switch (message.content) {
-    case 'showNick-sprint-1p':
-      // instance.scoreSprintEntreePublic.set('startTime', new Date())
-      break
-    default:
-      break
-  }
 }
