@@ -22,3 +22,9 @@ function handlePupitreAction(message) {
       break
   }
 }
+
+Template.btnDashboard.events({
+  'click button'() {
+    console.log('hey, button clicked in the dashboard m8 yall right')
+  },
+})
