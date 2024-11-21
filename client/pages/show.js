@@ -226,7 +226,7 @@ Template.show.events({
 
     //Is it currently the 1p sprint race?
     // sprint-1p?
-    if (instance.scoreSprint1p.get('startTime') && !instance.scoreSprint1p.get('endTime')) {
+    if (instance.scoreSprint1p.get('startTime') && !instance.scoreSprint1p.get(extra.pointer.id)) {
       const _id = extra.pointer.id
 
       const finishTime = new Date()

@@ -116,8 +116,6 @@ ce que vous avez caché dans votre estomac avant d'entrer dans la salle et quel 
 
 ---
 
-> si personne n'a cliqué
-
 ## intro-no-click
 
 alors
@@ -204,8 +202,6 @@ cette fois je vous donne le but du jeu :
 à mon top, le jeu c'est de cliquer sur sa souris.
 top
 `startRace`
-`endRace`
-`showP1`
 bienvenue!
 à la seule et unique personne à qui il est permis de jouer pour le moment.
 vous avez été choisie.
@@ -231,6 +227,7 @@ votre doigt élu enfonçant le bouton de la souris
 
 `showBtnSaluerLaFoule`
 `showBtnStart2p`
+`toggleBtnDashboard`
 
 <!-- donc là y'a un bouton saluer la foule qui apparaît, et ensuite ça part en jeu des captchas? juste pour y recycler? vraiment? peut être que c'est juste "je ne suis pas un robot", juste une fois, et ensuite on va le refaire à chaque fois que quelqu'un veut cliquer sur le bouton pour saluer la foule en multiplayer.-->
 
