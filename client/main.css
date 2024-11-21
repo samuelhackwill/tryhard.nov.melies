@@ -11,6 +11,10 @@
     outline: 2px solid white;
     background-color: darkblue;
   }
+
+  button.clicked {
+    background-color: black !important;
+  }
 }
 
 body {

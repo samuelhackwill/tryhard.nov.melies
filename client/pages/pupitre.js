@@ -6,7 +6,6 @@ Template.pupitre.onCreated(function () {
   this.text = new ReactiveVar('')
   this.headers = new ReactiveVar([])
   this.selectedHeader = new ReactiveVar('')
-  this.readingIndex = new ReactiveVar(0)
 
   Meteor.call('returnText', (err, res) => {
     if (err) {

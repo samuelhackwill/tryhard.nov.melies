@@ -145,8 +145,6 @@ ce privilège est réservé aux non-cliqueurs que vous êtes.
 
   <!-- ou pour être précis, le problème c'est que j'ai une assumption : qu'il y aura des gens qui cliquent et d'autres qui cliquent pas, alors que ça se trouve il y aura une homogénéité. Je ne veux pas écrire deux pièces différentes. A un moment où à un autre, il faut que je converge. Je pense que le sujet de cette situation, c'est : je donne BEAUCOUP de pouvoir au public mais que c'est méchant en fin de compte. Ou alors que mon but depuis le début c'était de le faire rentrer dans la partie pour le dominer et le tuer. C'était un acte d'agression. -->
 
-> si quelqu'un a cliqué
-
 ## intro-at-least-one-click
 
 alors
@@ -249,28 +247,28 @@ Méléagre est celui qui donne le coup de grâce au sanglier.
 
 ## pointer-2p-salue-la-foule
 
-{Méléagre du 69},
+$, dit proutproutp ourt
+$, dit gnagnagna
 
 ## pointer-1p-salue-la-foule
 
-_Atalante de Paris 4_, Triomphante, salue la foule.
-_Atalante de Paris 4_, solaire, balaye la foule du regard
-_Atalante de Paris 4_ harangue le peuple des spectateurs
-_Atalante de Paris 4_ clique de manière frénétique pour enivrer la foule
-_Atalante de Paris 4_ montre ses biceps à tout le monde
-_Atalante de Paris 4_ prend un enfant que la foule lui tend et l'assied sur ses genoux
-_Atalante de Paris 4_ crie à l'assemblée que l'avenir sera prospère et stable
-_Atalante de Paris 4_, crie : "c'est moi qui ait cliqué en premier!"
-_Atalante de Paris 4_, crie : "mais bientôt, vous cliquerez aussi!"
-_Atalante de Paris 4_, crie : "nous cliquerons tous ensemble pour la plus grande Interactivité!"
-_Atalante de Paris 4_, crie : "tous ensemble, clic, clic"
-_Atalante de Paris 4_, crie : "je viens du peuple, je suis comme vous!"
-_Atalante de Paris 4_, crie : "toutes choses égales par ailleurs"
-_Atalante de Paris 4_, crie : "j'ai été appelée"
-_Atalante de Paris 4_, crie : "pour cliquer en votre nom"
-_Atalante de Paris 4_, crie : "il y a un autre bouton sur l'écran mais je vais pas cliquer dessus tout de suite!"
-_Atalante de Paris 4_, crie : "je fais ce que je veux c'est moi qui ait la souris!"
-`loop(pointer-1p-salue-la-foule)`
+$, Triomphante, salue la foule.
+$, solaire, balaye la foule du regard
+$ harangue le peuple des spectateurs
+$ clique de manière frénétique pour enivrer la foule
+$ montre ses biceps à tout le monde
+$ prend un enfant que la foule lui tend et l'assied sur ses genoux
+$ crie à l'assemblée que l'avenir sera prospère et stable
+$, crie : "c'est moi qui ait cliqué en premier!"
+$, crie : "mais bientôt, vous cliquerez aussi!"
+$, crie : "nous cliquerons tous ensemble pour la plus grande Interactivité!"
+$, crie : "tous ensemble, clic, clic"
+$, crie : "je viens du peuple, je suis comme vous!"
+$, crie : "toutes choses égales par ailleurs"
+$, crie : "j'ai été appelée"
+$, crie : "pour cliquer en votre nom"
+$, crie : "il y a un autre bouton sur l'écran mais je vais pas cliquer dessus tout de suite!"
+$, crie : "je fais ce que je veux c'est moi qui ait la souris!"
 
 <!-- ok donc ce qui va se passer ensuite c'est que y'a le bouton "faire apparaître tout le monde" et le bouton "faire apparaître le sanglier de machin". et ensuite mini-jeu où il faut tuer le sanglier. -->
 
@@ -306,15 +304,6 @@ décide de toucher sa souris d'ordinateur et de cliquer sur le bouton droit de l
 
 <!-- dans la séquence suivante, la première personne qui arrive à cliquer sur le bouton droit de sa souris dans le public fait apparaître "héroïquement" un curseur de souris blanc sur l'écran (SCALE & OPACITY). Toutes les autres pressions sur la souris font apparaître moins héroïquement (OPACITY) des curseurs gris (sur fond sombre), qui sont presque imperceptibles. Ainsi, la personne courageuse peut se reconnaître sur l'écran (c'est la seule qui a un curseur bien visible, les autres on s'en fout). Tous les curseurs sont dessinés à la main et uniques. Il y a des subtiles variations qui permettront ensuite aux gens peut être de se reconnaître. (curseur de droitier, curseur de gaucher, pointeur, flèche, curseur, épée, main gantée, main avec deux doigts, patte de chat, etc.) -->
 
-> a la fin de la loterie de x secondes, il a plusieurs possibilités :
-> soit j'ai reçu qu'un seul clic droit (A)
-> soit j'ai reçu plein de clics droits d'une seule et même personne (A)
-> soit j'ai reçu plein de clics droits (B)
-> soit j'ai reçu un mélange de clics gauches et de clics droits (C)
-> soit personne a cliqué (D)
-
-> c'est une séquence compliquée : admettons que la personne clique mais en regardant sa souris, pas l'écran, elle ne saura pas qu'elle a été choisie. ou si plein de gens ont cliqué, ça pourra être compliqué de s'identifier à l'écran malgré tout!
-
 <!--
 ### B
 
@@ -329,8 +318,6 @@ La personne courageuse s'était tout de suite reconnue dans le public. Telle le 
 La personne courageuse s'était tout de suite reconnue dans le public. Telle un roi Arthur un peu hésitant, retirant Excalibur du rocher en plusieurs fois, ses membres pris d'un mouvement irrésistible, elle n'était pas sûre de tout à fait contrôler la situation mais sa détermination était sans faille.
 
 ### si une seule personne clique mais pas sur le bouton / sur plusieurs boutons -->
-
-> dans ce cas ci, le curseur n'apparaît qu'à la fin de la lotterie, pfiou c'est compliqué! (pis sinon quoi, c'est une autre personne qui passe devant en toute logique)
 
 <!--
 La personne courageuse s'était tout de suite reconnue dans le public. Fidèle à son caractère impétueux, ou peut-être par ignorance, elle n'était néanmoins pas tout à fait sûre d'où était le bouton droit exactement sur la souris d'ordinateur, mais peu importe, ce qui compte dans la vie c'est de se mettre en mouvement, pas d'atteindre sa cible du premier coup.

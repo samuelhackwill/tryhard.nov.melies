@@ -108,7 +108,7 @@ function handlePupitreAction(message) {
       text = `${count} personne${plural.s} ${plural.ont} déjà commencé à jouer.`
       console.log(text)
 
-      if (count < 1)
+      if (count < 0)
         text =
           "oups Samuel a oublié de lancer la course! _again!_ Ou alors il y a un bug peut-être, auquel cas pardon Samuel d'avoir été passif-agressif. Enfin ceci dit si y'a un bug c'est aussi de ma faute donc bon"
 
@@ -207,7 +207,7 @@ Template.show.helpers({
 })
 
 Template.show.events({
-  'click .backgroundContainer'(event, tpl, extra) {
+  'mouseup .backgroundContainer'(event, tpl, extra) {
     if (!extra) return
     let pointer = instance.pointers.get(extra.pointer.id)
 
@@ -216,7 +216,7 @@ Template.show.events({
     }
   },
 
-  'click #background'(event, tpl, extra) {
+  'mouseup #background'(event, tpl, extra) {
     console.log('click background')
     if (!extra) return
     let pointer = instance.pointers.get(extra.pointer.id)
@@ -274,11 +274,7 @@ Template.show.events({
       instance.pointers.set(pointer.id, pointer)
     }
   },
-  'click button'() {
-    // note that the REAL pointer of localhost will be able to natively trigger this event as well as simulated clicks. (which is good for testing i guess)
-    //console.log("SHOW.JS button clicked. ", this)
-  },
-  'click .pointer'(event, tpl, extra) {
+  'mouseup .pointer'(event, tpl, extra) {
     //Boss "kill on click" behaviour
     if (extra.pointer.id == 'samuel') {
       //We're a pointer clicking on another pointer (the _pointee_)
@@ -331,6 +327,7 @@ Template.show.events({
 simulateMouseUp = function (pointer) {
   const elements = getElementsUnder(pointer)
   if (elements.length == 0) return
+  $(element).trigger('mouseup', { pointer: pointer })
 
   elements.forEach((e) => e.classList.remove('clicked'))
 }
@@ -346,8 +343,8 @@ simulateMouseDown = function (pointer) {
     }
 
     //Trigger a jQuery click event with extra data (the pointer)
-    $(element).trigger('click', { pointer: pointer })
-    element.classList.remove('clicked')
+    $(element).trigger('mousedown', { pointer: pointer })
+    element.classList.add('clicked')
 
     //TODO: figure out a better event propagation mechanism
     // Here's part of the issue: https://stackoverflow.com/questions/3277369/how-to-simulate-a-click-by-using-x-y-coordinates-in-javascript/78993824#78993824
@@ -377,6 +374,8 @@ function checkHover(pointer) {
   if (prevHoveredElement != currentHoveredElement) {
     //Update the hover counter of the previous element (if there's one)
     if (prevHoveredElement) {
+      console.log(prevHoveredElement)
+      prevHoveredElement.classList.remove('clicked')
       addToDataAttribute(prevHoveredElement, 'hovered', -1)
       $(prevHoveredElement).trigger('mouseleave', { pointer: pointer })
     }
@@ -405,7 +404,7 @@ function checkBufferedClick(pointer) {
 }
 
 //Shorthand for "getting a data attribute in `element` as an integer to add `amount` to it before re-saving the new value as a data attribute"
-function addToDataAttribute(element, attr, amount) {
+export const addToDataAttribute = function (element, attr, amount) {
   let value = parseInt(element.getAttribute(attr) ?? 0)
   value += amount
   if (value == 0) {
