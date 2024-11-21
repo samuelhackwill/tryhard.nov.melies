@@ -96,18 +96,22 @@ function handlePupitreAction(message) {
       break
     case 'countPlayers-sprint-entree-public':
       // we need to substract 2 because 2 of the objects of scroSprintEntreePublic are startTime and endTime
-      let plural = ''
+      let plural = { s: '', ont: 'a' }
       let text = ''
       let count = Object.keys(instance.scoreSprintEntreePublic.all()).length - 2
 
       if (count > 1 || count == 0) {
-        plural = 's'
-        text = `${count} personne${plural} ont déjà commencé à jouer.`
-      } else {
+        plural.s = 's'
+        plural.ont = 'ont'
+      }
+
+      text = `${count} personne${plural.s} ${plural.ont} déjà commencé à jouer.`
+      console.log(text)
+
+      if (count < 1)
         text =
           "oups Samuel a oublié de lancer la course! _again!_ Ou alors il y a un bug peut-être, auquel cas pardon Samuel d'avoir été passif-agressif. Enfin ceci dit si y'a un bug c'est aussi de ma faute donc bon"
-      }
-      console.log(text)
+
       handlePupitreMessage({ type: 'newLine', content: text })
 
       break
