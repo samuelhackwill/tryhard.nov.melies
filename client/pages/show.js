@@ -442,7 +442,6 @@ function checkHover(pointer) {
   if (prevHoveredElement != currentHoveredElement) {
     //Update the hover counter of the previous element (if there's one)
     if (prevHoveredElement) {
-      console.log(prevHoveredElement)
       prevHoveredElement.classList.remove('clicked')
       addToDataAttribute(prevHoveredElement, 'hovered', -1)
       $(prevHoveredElement).trigger('mouseleave', { pointer: pointer })

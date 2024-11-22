@@ -94,6 +94,18 @@ Template.btnDashboard.events({
       (obj) => !obj.hasOwnProperty('nick'),
     )
     console.log(namelessPeeps)
+
+    for (let x = 0; x < namelessPeeps.length; x++) {
+      Meteor.setTimeout(() => {
+        document
+          .getElementById('pointer' + namelessPeeps[x].id)
+          .classList.add('transition-all', 'duration-[1s]')
+      }, x * 10)
+
+      Meteor.setTimeout(() => {
+        document.getElementById('pointer' + namelessPeeps[x].id).classList.remove('opacity-0')
+      }, x * 1000)
+    }
   },
 })
 
