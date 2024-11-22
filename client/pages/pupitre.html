@@ -1,11 +1,11 @@
 <template name="pupitre">
   <div>
     <div class="m-6">
-      <h1 class="italic">Pupitre</h1>
+      <h1 class="italic">Pupitre {{ selectedHeader }}</h1>
     </div>
 
     <div class="ml-4">
-      <div class="grid grid-cols-5 gap-4 p-4 h-full absolute">
+      <div class="grid grid-cols-5 gap-4 p-4 h-5/6 absolute">
         <div class="overflow-y-scroll">
           {{#each getHeaders}}
           <div>

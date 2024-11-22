@@ -80,6 +80,14 @@ Template.pupitre.helpers({
     }
   },
 
+  selectedHeader() {
+    if (Template.instance().selectedHeader.get()) {
+      return '§ ' + Template.instance().selectedHeader.get()
+    } else {
+      return
+    }
+  },
+
   getHeaders() {
     return Template.instance().headers.get()
   },

@@ -35,6 +35,7 @@ let players = []
 Template.show.onCreated(function () {
   this.scoreSprintEntreePublic = new ReactiveDict()
   this.scoreSprint1p = new ReactiveDict()
+  this.scoreSprint2p = new ReactiveDict()
   this.areNamesHidden = new ReactiveVar(true)
   this.plantedTrees = new ReactiveDict()
   this.pointers = new ReactiveDict()
@@ -174,6 +175,13 @@ function handlePointerMessage(message) {
 }
 
 Template.show.helpers({
+  hasNick() {
+    if (this.nick) {
+      return true
+    } else {
+      return false
+    }
+  },
   areNamesHidden() {
     if (Template.instance().areNamesHidden.get() === true) {
       return 'opacity-0'
@@ -217,21 +225,81 @@ Template.show.events({
   },
 
   'mouseup #background'(event, tpl, extra) {
-    console.log('click background')
+    // console.log('click background')
     if (!extra) return
     let pointer = instance.pointers.get(extra.pointer.id)
     if (!pointer) {
       return
     }
 
-    //Is it currently the 1p sprint race?
-    // sprint-1p?
-    if (instance.scoreSprint1p.get('startTime') && !instance.scoreSprint1p.get(extra.pointer.id)) {
+    //Is it currently the 2p sprint race? (this is to get the second player)
+    if (instance.scoreSprint2p.get('startTime') && !instance.scoreSprint2p.get('endTime')) {
+      const _id = extra.pointer.id
+
+      // we need to check if it's not p1 clicking!!! we'll clean that stuff later
+      p1data = instance.scoreSprint1p.all()
+
+      const smallestTimep1 = Object.entries(p1data).reduce(
+        (min, [key, value]) => {
+          return value.time < min.value.time ? { key, value } : min
+        },
+        { key: null, value: { time: Infinity } },
+      )
+
+      p1id = instance.pointers.get(smallestTimep1.key).id
+      console.log(p1id, extra.pointer.id)
+      if (p1id == extra.pointer.id) return
+
+      //////// if it's not p1, go along
+
+      const finishTime = new Date()
+      const score = finishTime - instance.scoreSprint2p.get('startTime')
+      instance.scoreSprint2p.set(_id, { time: score })
+      instance.scoreSprint2p.set('endTime', finishTime)
+
+      data = instance.scoreSprint2p.all()
+      // get everything and then get the smallest score
+      const smallestTime = Object.entries(data).reduce(
+        (min, [key, value]) => {
+          return value.time < min.value.time ? { key, value } : min
+        },
+        { key: null, value: { time: Infinity } },
+      )
+
+      Meteor.setTimeout(() => {
+        document.getElementById('pointer' + _id).style.transform = 'scale(1000)'
+
+        document.getElementById('pointer' + _id).classList.remove('opacity-0')
+      }, 20)
+
+      Meteor.setTimeout(() => {
+        document
+          .getElementById('pointer' + _id)
+          .classList.add('transition-transform', 'duration-[1s]')
+      }, 50)
+
+      Meteor.setTimeout(() => {
+        document.getElementById('pointer' + _id).style.transform = ''
+      }, 100)
+
+      Meteor.setTimeout(() => {
+        console.log(instance.pointers.all(), smallestTime)
+
+        _pointer = instance.pointers.get(smallestTime.key)
+        _pointer.nick = 'Méléagre-de-la-guille'
+        instance.pointers.set(smallestTime.key, _pointer)
+      }, 1000)
+    }
+
+    //Is it currently the 1p sprint race? (this is to get the first player)
+    if (instance.scoreSprint1p.get('startTime') && !instance.scoreSprint1p.get('endTime')) {
+      console.log('PROUUUT')
       const _id = extra.pointer.id
 
       const finishTime = new Date()
       const score = finishTime - instance.scoreSprint1p.get('startTime')
       instance.scoreSprint1p.set(_id, { time: score })
+      instance.scoreSprint1p.set('endTime', finishTime)
 
       document.getElementById('pointer' + _id).style.transform = 'scale(1000)'
 

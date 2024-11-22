@@ -52,6 +52,32 @@ une couleur de clic / joueureuse
 
 clic clic clic clic clic clic clic clic clic! -->
 
+## prologue
+
+- La vie contemplative n'est utile que si elle éclaire la vie _active_, dit le philosophe.
+
+- "Toute la dignité de l’homme est en la pensée. Mais agir bien, c'est savoir penser en action.", dit le philosophe.
+
+- "Le but de la sagesse est la contemplation, celui de la prudence est l'action." dit le philosophe.
+
+- agiter sa souris, c'est penser avec son curseur, dit le philosophe informaticien.
+
+- cliquer ne fera pas mal à la souris, car la souris n'a pas de conscience, dit le philosophe spéciste.
+
+- cliquer ne fera pas mal à la souris, car elle est sous sédation profonde et continue jusqu'à la mort, dit le philosophe médecin-anesthésiste.
+
+- cliquer ne fera pas mal à la souris, car elle est morte depuis longtemps, c'est un cadavre de souris, pas une souris vivante, dit le philosophe-médecin-légiste.
+
+- Oui, cliquer fera mal à la souris ; mais la douleur n'est qu'une information transmise au cerveau, dit le philosophe ascétique.
+
+- la souris aura mal, certes, mais le plaisir total du nombre de personnes dans la salle divisé par le nombre de souris qui auront mal (si l'on part du principe que tout le monde ne cliquera pas) égale plus de plaisir que de souffrance, il faut donc cliquer sur la souris, dit le philosophe utilitariste.
+
+- la souris ne refuse pas en soi la souffrance, elle la veut, elle la recherche même, _pourvu qu'on lui en montre le sens_, dit Nietzsche.
+
+- toute la vie d'une souris oscille, comme un pendule, de droite à gauche, de la souffrance à l'ennui, dit Schopenhauer.
+
+- "Aussi y a-t-il des gens qui, sans aucunes connaissances, sont plus propres à l'action que d'autres qui sont plus instruits qu'eux ; et, parmi les autres hommes, ceux qui ont de l'expérience sont dans le même cas. En effet, on a beau savoir que les viandes légères sont saines et de facile digestion, si l'on ne sait pas quelles sont ces viandes légères, on ne guérira pas un malade; mais celui qui saura que c'est la chair des oiseaux qui est légère et saine, y réussira mieux," dit le philosophe hashtag team viandard (Aristote).
+
 ## sprint entree public
 
 `startRace`
@@ -231,8 +257,6 @@ votre doigt élu enfonçant le bouton de la souris
 
 _Atalante de Paris 4_, profitant du fait qu'elle a maintenant un curseur, une faculté d'agir sur le monde, peut maintenant tendre de réduire cette injustice qui fait qu'elle est la seule à pouvoir interagir avec la performance.
 
-`showP2`
-
 <!-- apparaît triomphalement le pointeur de {Méléagre de Paris 4} -->
 
 <!-- attention si je veux parler ici, il faut plus qu'il y ait de boutons à l'écran  -->
@@ -243,40 +267,48 @@ nous dit Ovide
 et là où Atalante est la première à cliquer
 Méléagre est celui qui donne le coup de grâce au sanglier.
 
-`showBtnStartMMO`
+`showBtnMMO`
+`showBtnSanglier`
 
 ## pointer-2p-salue-la-foule
 
-$, dit proutproutp ourt
-$, dit gnagnagna
+¥, Boudeur, fait une petite danse.
+¥, Pointe une personne dans le public du doigt et lui fait un pouce vers le haut.
+¥, se plaint du fait que personne ne l'aime, mais que c'est lui qui a débarassé tout le monde du sanglier.
+¥, marmonne dans le micro : c'est grâce à moi qu'on peut se balader en sécurité à nouveau!
+¥, tonne : en réalité j'avais cliqué avant Atalante mais ma souris n'a pas fonctionné.
+¥, râle : si c'était moi le chef, les histoires de sanglier ce serait réglé en 5 secondes.
+¥, hausse les épaules : tout le monde est contre moi, mais heureusement que je vous ai vous!
+¥ imite Atalante pour se moquer d'elle.
+¥, crie : "il y a un autre bouton sur l'écran mais je vais pas cliquer dessus tout de suite!"
+¥, crie : "je fais ce que je veux c'est moi qui ait la souris!"
 
 ## pointer-1p-salue-la-foule
 
-$, Triomphante, salue la foule.
-$, solaire, balaye la foule du regard
-$ harangue le peuple des spectateurs
-$ clique de manière frénétique pour enivrer la foule
-$ montre ses biceps à tout le monde
-$ prend un enfant que la foule lui tend et l'assied sur ses genoux
-$ crie à l'assemblée que l'avenir sera prospère et stable
-$, crie : "c'est moi qui ait cliqué en premier!"
-$, crie : "mais bientôt, vous cliquerez aussi!"
-$, crie : "nous cliquerons tous ensemble pour la plus grande Interactivité!"
-$, crie : "tous ensemble, clic, clic"
-$, crie : "je viens du peuple, je suis comme vous!"
-$, crie : "toutes choses égales par ailleurs"
-$, crie : "j'ai été appelée"
-$, crie : "pour cliquer en votre nom"
-$, crie : "il y a un autre bouton sur l'écran mais je vais pas cliquer dessus tout de suite!"
-$, crie : "je fais ce que je veux c'est moi qui ait la souris!"
+¥, Triomphante, salue la foule.
+¥, solaire, balaye la foule du regard
+¥ harangue le peuple des spectateurs
+¥ clique de manière frénétique pour enivrer la foule
+¥ montre ses biceps à tout le monde
+¥ prend un enfant que la foule lui tend et l'assied sur ses genoux
+¥ crie à l'assemblée que l'avenir sera prospère et stable
+¥, crie : "c'est moi qui ait cliqué en premier!"
+¥, crie : "mais bientôt, vous cliquerez aussi!"
+¥, crie : "nous cliquerons tous ensemble pour la plus grande Interactivité!"
+¥, crie : "tous ensemble, clic, clic"
+¥, crie : "je viens du peuple, je suis comme vous!"
+¥, crie : "toutes choses égales par ailleurs"
+¥, crie : "j'ai été appelée"
+¥, crie : "pour cliquer en votre nom"
+¥, crie : "il y a un autre bouton sur l'écran mais je vais pas cliquer dessus tout de suite!"
+¥, crie : "je fais ce que je veux c'est moi qui ait la souris!"
 
 <!-- ok donc ce qui va se passer ensuite c'est que y'a le bouton "faire apparaître tout le monde" et le bouton "faire apparaître le sanglier de machin". et ensuite mini-jeu où il faut tuer le sanglier. -->
-
-<!-- at some point si je réutilise ce procédé de boucler les instructions pour que la personne comprenne d'elle même qu'elle est arrivée au bout du chemin faudra que j'en parlions -->
-
-<!-- soit les gens cliquent super vite, soit ils attendent. patience! sans doute que plus tard, il y aura un jeu où je dirai aux gens qu'il faut cliquer et en fait il faut pas cliquer. -->
-
 <!--
+at some point si je réutilise ce procédé de boucler les instructions pour que la personne comprenne d'elle même qu'elle est arrivée au bout du chemin faudra que j'en parlions
+
+soit les gens cliquent super vite, soit ils attendent. patience! sans doute que plus tard, il y aura un jeu où je dirai aux gens qu'il faut cliquer et en fait il faut pas cliquer.
+
 ## invitation
 
 c'est alors qu'une personne
@@ -289,22 +321,21 @@ jamais satisfaite du statut quo,
 impatiente, curieuse, méthodique, finalement sans peur et toujours prête à se mettre en danger, en danger mortel, n'ayant pas peur de l'anéantissement intellectuel ou de la dissolution de sa personnalité face à l'adversité, face à la torture même, n'ayant pas peur de se désintégrer dans l'immensité du néant, pour qui les milliard d'années de vide; c'est à dire, la quantité infinie de vide avant nous et la quantité infinie de vide après nous n'inspirait aucun vertige, que ce soit par manque de lucidité d'ailleurs, ou pour des raisons métaphysiques, peu importe, elle a pas peur de la mort on vous dit.
 cette personne,
 rare,
-existe-t-elle seulement on se demande -->
+existe-t-elle seulement on se demande
 
-<!-- qui n'est d'ailleurs pas nécessairement la personne qui a cliqué tout à l'heure
+qui n'est d'ailleurs pas nécessairement la personne qui a cliqué tout à l'heure
 
 mais bon c'est peut être elle, who knows
 
-cette personne -->
+cette personne
 
-<!-- cette personne
-décide de toucher sa souris d'ordinateur et de cliquer sur le bouton droit de la souris. -->
+cette personne
+décide de toucher sa souris d'ordinateur et de cliquer sur le bouton droit de la souris.
 
-<!-- loterie pendant 3 secondes, on observe la réaction du public souris-wise. -->
+oterie pendant 3 secondes, on observe la réaction du public souris-wise.
 
-<!-- dans la séquence suivante, la première personne qui arrive à cliquer sur le bouton droit de sa souris dans le public fait apparaître "héroïquement" un curseur de souris blanc sur l'écran (SCALE & OPACITY). Toutes les autres pressions sur la souris font apparaître moins héroïquement (OPACITY) des curseurs gris (sur fond sombre), qui sont presque imperceptibles. Ainsi, la personne courageuse peut se reconnaître sur l'écran (c'est la seule qui a un curseur bien visible, les autres on s'en fout). Tous les curseurs sont dessinés à la main et uniques. Il y a des subtiles variations qui permettront ensuite aux gens peut être de se reconnaître. (curseur de droitier, curseur de gaucher, pointeur, flèche, curseur, épée, main gantée, main avec deux doigts, patte de chat, etc.) -->
+dans la séquence suivante, la première personne qui arrive à cliquer sur le bouton droit de sa souris dans le public fait apparaître "héroïquement" un curseur de souris blanc sur l'écran (SCALE & OPACITY). Toutes les autres pressions sur la souris font apparaître moins héroïquement (OPACITY) des curseurs gris (sur fond sombre), qui sont presque imperceptibles. Ainsi, la personne courageuse peut se reconnaître sur l'écran (c'est la seule qui a un curseur bien visible, les autres on s'en fout). Tous les curseurs sont dessinés à la main et uniques. Il y a des subtiles variations qui permettront ensuite aux gens peut être de se reconnaître. (curseur de droitier, curseur de gaucher, pointeur, flèche, curseur, épée, main gantée, main avec deux doigts, patte de chat, etc.
 
-<!--
 ### B
 
 Il y avait de nombreuses personnes courageuses dans le public. Cependant, une de ces personnes était non seulement courageuse mais aussi rapide.
@@ -317,9 +348,8 @@ La personne courageuse s'était tout de suite reconnue dans le public. Telle le 
 
 La personne courageuse s'était tout de suite reconnue dans le public. Telle un roi Arthur un peu hésitant, retirant Excalibur du rocher en plusieurs fois, ses membres pris d'un mouvement irrésistible, elle n'était pas sûre de tout à fait contrôler la situation mais sa détermination était sans faille.
 
-### si une seule personne clique mais pas sur le bouton / sur plusieurs boutons -->
+### si une seule personne clique mais pas sur le bouton / sur plusieurs boutons
 
-<!--
 La personne courageuse s'était tout de suite reconnue dans le public. Fidèle à son caractère impétueux, ou peut-être par ignorance, elle n'était néanmoins pas tout à fait sûre d'où était le bouton droit exactement sur la souris d'ordinateur, mais peu importe, ce qui compte dans la vie c'est de se mettre en mouvement, pas d'atteindre sa cible du premier coup.
 
 ### si une personne clique mais pas sur le bon bouton et une autre personne clique entre temps
@@ -328,43 +358,15 @@ Alors ce qui est étonnant, c'est qu'une personne courageuse s'était reconnue d
 
 ### si plusieurs personnes cliquent sur le bon bouton
 
-Je ne m'étais pas trompé au sujet du groupe de personnes courageuses, qui comprenait de nombreuses personnes courageuses. La personne qui avait le moins hésité à se déclarer courageuse décida néanmoins de prendre le contrôle de la situation, sous les encouragements des autres personnes courageuses. -->
+Je ne m'étais pas trompé au sujet du groupe de personnes courageuses, qui comprenait de nombreuses personnes courageuses. La personne qui avait le moins hésité à se déclarer courageuse décida néanmoins de prendre le contrôle de la situation, sous les encouragements des autres personnes courageuses.
 
-<!-- ### si personne ne clique
+### si personne ne clique
 
 Le groupe de personnes courageuses s'était laissé légèrement intimider par le texte de la pièce, car c'était un groupe de personnes sensibles qui savaient se rendre disponibles pour les méditations existentielles. C'est une grande qualité et elles faisaient un honneur au théâtre en ayant choisi de venir aujourd'hui plutôt que de poursuivre leur lecture de Shoppenhauer.
 
 Néanmoins, la contemplation et l'action sont les deux jambes qui permettent de faire marcher la pensée, dit le philosophe.
 
 (pause) -->
-
-## pointer-1p-no-click
-
-- La vie contemplative n'est utile que si elle éclaire la vie _active_, dit le philosophe.
-
-- "Toute la dignité de l’homme est en la pensée. Mais agir bien, c'est savoir penser en action.", dit le philosophe.
-
-- "Le but de la sagesse est la contemplation, celui de la prudence est l'action." dit le philosophe.
-
-- agiter sa souris, c'est penser avec son curseur, dit le philosophe informaticien.
-
-- ça ne fera pas mal à la souris, car la souris n'a pas de conscience, dit le philosophe spéciste.
-
-- ça ne fera pas mal à la souris, car elle est sous sédation profonde et continue jusqu'à la mort, dit le philosophe médecin-anesthésiste.
-
-- ça ne fera pas mal à la souris, car elle est morte depuis longtemps, c'est un cadavre de souris, pas une souris vivante, dit le philosophe-médecin-légiste.
-
-- "Aussi y a-t-il des gens qui, sans aucunes connaissances, sont plus propres à l'action que d'autres qui sont plus instruits qu'eux ; et, parmi les autres hommes, ceux qui ont de l'expérience sont dans le même cas. En effet, on a beau savoir que les viandes légères sont saines et de facile digestion, si l'on ne sait pas quelles sont ces viandes légères, on ne guérira pas un malade; mais celui qui saura que c'est la chair des oiseaux qui est légère et saine, y réussira mieux," dit le philosophe hashtag team viandard.
-
-- ça fera mal à la souris mais tant mieux, dit le philosophe ascétique.
-
-- la souris ne refuse pas en soi la souffrance, elle la veut, elle la recherche même, _pourvu qu'on lui en montre le sens_, dit Nietzsche.
-
-- toute la vie d'une souris oscille, comme un pendule, de droite à gauche, de la souffrance à l'ennui, dit Schopenhauer.
-
-- la souris aura mal, certes, mais le plaisir total du nombre de personnes dans la salle divisé par le nombre de souris qui auront mal (si l'on part du principe que tout le monde ne cliquera pas) égale plus de plaisir que de souffrance, il faut donc cliquer sur la souris, dit le philosophe utilitariste.
-
-`loop(pointer-1p-no-click)`
 
 <!-- - Au fond, le groupe de spectateurs avait laissé se répandre comme un feu de brousse, l'idée selon laquelle il fallait maintenant se taire et m'écouter, plutôt que d'agir. Chaque personne qui signait silencieusement le contrat social du-spectateur-de-théâtre interdisait par la même à ses voisins d'agir. Plus le temps passait, plus le groupe de personnes courageuses devenait un groupe de personnes courageuses immobiles. Ce qui n'est pas une faute morale, hein, soyons bien clairs à ce sujet. Pas pour l'instant. Il n'y a rien de mal au fait de s'asseoir sur le côté dans un bal folk, et de regarder les autres danser. (silence) Et en même temps cette situation excitait le narrateur qui avait de plus en plus envie de parler. -->
 
@@ -376,9 +378,9 @@ ah! oui. voilà. j'aimerais me réjouir qu'une personne courageuse ait fini par 
 
 <!-- ## ACTE II -->
 
-> il y a maintenant un curseur blanc à l'écran, plus éventuellement les curseurs transparents des autres gens, dont les clics ne sont pas pris en compte.
+<!-- il y a maintenant un curseur blanc à l'écran, plus éventuellement les curseurs transparents des autres gens, dont les clics ne sont pas pris en compte.
 
-<!-- En l’absence de tout corps présent sur scène, c'était maintenant une représentation symbolique de la personne courageuse qui se rendait visible à toutes et tous. -->
+En l’absence de tout corps présent sur scène, c'était maintenant une représentation symbolique de la personne courageuse qui se rendait visible à toutes et tous.
 
 > possibilité 1 : aller sur le site web du théâtre et explorer les raisons de l'absence de corps sur scène. le risque : auto centrage aaarh mais plein de blagues méchantes sur la culture?
-> possibilité 2 : un scroll scroll scroll jusqu'à un bouton, pour dire bonjour au narrateur, puis conversation absurde à base de bonjour! (cf IA qui s'énerve).
+> possibilité 2 : un scroll scroll scroll jusqu'à un bouton, pour dire bonjour au narrateur, puis conversation absurde à base de bonjour! (cf IA qui s'énerve). -->

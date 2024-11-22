@@ -2,7 +2,7 @@
 module.exports = {
   content: [
     './client/*.{js,html}',
-    './client/components/*.{hs,html}',
+    './client/components/*.{js,html}',
     './client/components/*/*.{js,html}',
     './client/pages/*.{js,html}',
   ],

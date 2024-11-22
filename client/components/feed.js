@@ -11,7 +11,8 @@ export const handlePupitreMessage = function (message) {
   feed = document.getElementById('feed')
 
   const feedItem = document.createElement('div')
-  feedItem.className = 'mb-6 ml-2 feedItem transition-opacity duration-1000 '
+  feedItem.className = 'ml-2 feedItem transition-opacity duration-1000 '
+  feedItem.style.marginBottom = '32px'
 
   message.content.split('').forEach((char) => {
     // si c'est une étoile, passe en mode emphasis

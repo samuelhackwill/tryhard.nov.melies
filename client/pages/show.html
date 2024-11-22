@@ -15,12 +15,17 @@
       pointer-id="{{ this.id }}"
       id="pointer{{ this.id }}"
     >
+      <!-- {{#if hasNick}} -->
+
       <span
         class="ml-8 mt-8 p-2 bg-black text-white rounded-lg absolute w-max transition-opacity duration-1000 text-xl {{
           areNamesHidden
         }}"
-        >{{ this.nick }}</span
       >
+        {{ this.nick }}
+      </span>
+      <!-- {{/if}} -->
+
       <!-- {{#if tree}}
       <span class="tree" style="position: absolute; left: -25px; top: -50px; font-size: 250%">{{tree}}</span>
       {{/if}}
