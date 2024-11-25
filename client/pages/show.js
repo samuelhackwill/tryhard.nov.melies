@@ -4,23 +4,23 @@ import { streamer } from '../../both/streamer.js'
 import { stepper } from '../stepper.js'
 // import { getRandomBossAccessory, getRandomAccessory } from '../dressup.js'
 // import { getRandomTree } from '../trees.js'
-// import {
-//   sendToSides,
-//   circleRoutine,
-//   dressupAnimation,
-//   killAnimation,
-//   treePickUpAnimation,
-// } from '../bots.js'
-// import {
-//   resetRoutine,
-//   welcomeRoutine,
-//   regroupRoutine,
-//   squareRoutine,
-//   playgroundRoutine,
-//   axisRoutine,
-//   graphRoutine,
-// } from '../bots.js'
-// import { randomBetween } from '../../both/math-helpers.js'
+import {
+  sendToSides,
+  circleRoutine,
+  dressupAnimation,
+  killAnimation,
+  treePickUpAnimation,
+} from '../bots.js'
+import {
+  resetRoutine,
+  welcomeRoutine,
+  regroupRoutine,
+  squareRoutine,
+  playgroundRoutine,
+  axisRoutine,
+  graphRoutine,
+} from '../bots.js'
+import { randomBetween } from '../../both/math-helpers.js'
 
 import { handlePupitreMessage } from '../components/feed.js'
 
@@ -89,6 +89,18 @@ Template.show.onRendered(function () {
 
 function handlePupitreAction(message) {
   switch (message.content) {
+    case 'initPointers-prologue':
+      console.log('init pointers')
+      let index = 1
+
+      const len = Object.keys(instance.pointers.all()).length
+
+      Object.entries(instance.pointers.all()).forEach(([key, value]) => {
+        circleRoutine(value, len, index)
+        instance.pointers.set(key, value)
+        index++
+      })
+      break
     case 'startRace-sprint-entree-public':
       instance.scoreSprintEntreePublic.set('startTime', new Date())
       break
