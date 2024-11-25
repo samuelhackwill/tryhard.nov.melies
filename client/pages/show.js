@@ -146,7 +146,7 @@ function handlePupitreAction(message) {
 }
 
 function handlePointerMessage(message) {
-  // console.log('debug ', message)
+  console.log('debug ', message)
   let pointer = instance.pointers.get(message.loggerId)
 
   //We don't know this pointer yet.
@@ -481,7 +481,7 @@ export const addToDataAttribute = function (element, attr, amount) {
   }
 }
 
-function createPointer(id, bot = false) {
+export const createPointer = function (id, bot = false) {
   return {
     id: id,
     coords: { x: 0, y: 0 },

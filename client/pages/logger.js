@@ -55,6 +55,12 @@ Template.logger.onCreated(function () {
 
 Template.logger.onRendered(function () {
   console.log('logger rendered')
+  let coords = {
+    x: 1,
+    y: 1,
+  }
+  sendMessage({ type: 'move', loggerId: instance.loggerId, coords: coords })
+
   document.querySelector('body').addEventListener(
     'click',
     function () {

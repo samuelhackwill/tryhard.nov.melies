@@ -8,34 +8,36 @@
   </div>
 
   <div class="milieuContainer">
-    {{#each allPointers getAdmin=false}}
-    <div
-      class="bg-cursor bg-contain pointer w-[30px] h-[50px] bg-no-repeat opacity-0"
-      style="position:absolute; left:{{ this.coords.x }}px; top:{{ this.coords.y }}px;"
-      pointer-id="{{ this.id }}"
-      id="pointer{{ this.id }}"
-    >
-      <!-- {{#if hasNick}} -->
-
-      <span
-        class="ml-8 mt-8 p-2 bg-black text-white rounded-lg absolute w-max transition-opacity duration-1000 text-xl {{
-          areNamesHidden
-        }}"
+    <div id="pointersContainer">
+      {{#each allPointers getAdmin=false}}
+      <div
+        class="bg-cursor bg-contain pointer w-[30px] h-[50px] bg-no-repeat"
+        style="position:absolute; left:{{ this.coords.x }}px; top:{{ this.coords.y }}px;"
+        pointer-id="{{ this.id }}"
+        id="pointer{{ this.id }}"
       >
-        {{ this.nick }}
-      </span>
-      <!-- {{/if}} -->
+        <!-- {{#if hasNick}} -->
 
-      <!-- {{#if tree}}
-      <span class="tree" style="position: absolute; left: -25px; top: -50px; font-size: 250%">{{tree}}</span>
-      {{/if}}
-      <span class="accessory" style="position: absolute; left: 4px; top: 4px; font-size: 250%">{{accessory}}</span>
+        <span
+          class="ml-8 mt-8 p-2 bg-black text-white rounded-lg absolute w-max transition-opacity duration-1000 text-xl {{
+            areNamesHidden
+          }}"
+        >
+          {{ this.nick }}
+        </span>
+        <!-- {{/if}} -->
+
+        <!-- {{#if tree}}
+        <span class="tree" style="position: absolute; left: -25px; top: -50px; font-size: 250%">{{tree}}</span>
+        {{/if}}
+        <span class="accessory" style="position: absolute; left: 4px; top: 4px; font-size: 250%">{{accessory}}</span>
+      </div>
+      {{/each}} {{#each allPlantedTrees }}
+      <div class="pointer-events-none" style="position: absolute; left: {{coords.x}}px; top: {{coords.y}}px;">
+        <span class="tree" style="position: absolute; left: -25px; top: -50px; font-size: 250%">{{tree}}</span> -->
+      </div>
+      {{/each}}
     </div>
-    {{/each}} {{#each allPlantedTrees }}
-    <div class="pointer-events-none" style="position: absolute; left: {{coords.x}}px; top: {{coords.y}}px;">
-      <span class="tree" style="position: absolute; left: -25px; top: -50px; font-size: 250%">{{tree}}</span> -->
-    </div>
-    {{/each}}
   </div>
 
   <!-- below is only for admin pointer! -->
