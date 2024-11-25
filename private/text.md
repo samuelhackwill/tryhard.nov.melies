@@ -125,10 +125,20 @@ pour nous.
 
 pour que nous puissions jouer.
 `endRace`
-je veux d'ailleurs m'arrêter un moment pour vérifier si on a déjà commencé à jouer.
+
+<!-- je veux d'ailleurs m'arrêter un moment pour vérifier si on a déjà commencé à jouer.
 Enfin je veux dire, _je_ sais qu'on a déjà commencer à jouer
 mais est ce que _vous_ avez commencé à jouer?
-d'après mes calculs :
+d'après mes calculs : -->
+
+<!-- faussement profond ; créer du vertige à propos de rien -->
+<!-- essayer : dire tout de suite au gens que je suis déçu et qu'ils ont perdu -->
+
+<!-- essayer : enregistrer des sons de moi qui tape du texte pour montrer aux gens que je tape vite
+pour les intimider
+pour faire le crâneur
+faire la liste des jeux auxquels j'ai joué (et donc je vais les éclater) -->
+
 `countPlayers`
 
 <!-- <x> personnes ont déjà commencé à jouer. -->
@@ -150,6 +160,12 @@ vous n'avez pas commis un crime en ne cliquant pas
 mais aussi je tiens à dire tout de même que mon jeu n'est pas raté
 au prétexte que personne n'aurait cliqué
 au contraire, ma façon de voir les choses,
+
+<!-- don't justify yourself -->
+<!-- si tu es de mauvaise foi kiffe ta mauvaise foi -->
+<!-- si tu veux caster les gens dans le rôle des non-cliqueurs, c'est le genre de gens qui à un enterrement... -->
+<!-- c'est du RPG -->
+
 c'est que j'étais en train de tester votre capacité à rester passifs
 or force est de constater que vous avez fait preuve collectivement d'une très grande maîtrise en résistant à l'invitation silencieuse produite par les souris, le texte de communication du théâtre, ce que vous savez éventuellement sur moi, etc
 alors oui
@@ -192,6 +208,14 @@ je vous ai donné le pouvoir de me détruire et de m'ignorer
 et vous avez écarté fermement cette possibilité pour me donner à la place votre confiance totale
 et puis il y a celles et ceux qui ont cliqué, soit :
 
+<!-- pas de positivisme ou de pseudo-sociologie
+pas de surplomb
+si on classe les gens faut que ce soit ludique et n'imp
+ -->
+
+<!-- pas de "haha vous croyez etre libre mais en fait j'ai tout anticipé" -->
+<!-- sauf si c'est un personnage qui est l'ordinateur -->
+
 1. parce que ce sont des trolls
    elles veulent bien nous montrer que si on leur donne des souris, hé bien il faudra faire avec les conséquences
    s'il y a un trou dans la raquette, il vont pas faire semblant de ne pas le remarquer
@@ -222,6 +246,12 @@ avant de passer à la suite je vais vous montrer tout de même comment votre per
 
 ok bon et maintenant
 jouons
+
+<!--
+oui enfin jeu
+remettre en question de manière ludique ce qu'on attend d'un jeu
+exagérer de manière ludique la deception que les gens vont vivre pour qu'on en rigole ensemble -->
+
 cette fois je vous donne le but du jeu :
 à mon top, le jeu c'est de cliquer sur sa souris.
 top
@@ -384,3 +414,250 @@ En l’absence de tout corps présent sur scène, c'était maintenant une repré
 
 > possibilité 1 : aller sur le site web du théâtre et explorer les raisons de l'absence de corps sur scène. le risque : auto centrage aaarh mais plein de blagues méchantes sur la culture?
 > possibilité 2 : un scroll scroll scroll jusqu'à un bouton, pour dire bonjour au narrateur, puis conversation absurde à base de bonjour! (cf IA qui s'énerve). -->
+
+## skibidi toilet
+
+c'est alors qu'une personne
+parmi nous
+s'est reconnue.
+cette personne,
+qui s'était d'ailleurs toujours vue comme une personne
+aventureuse, exploratrice, ambitieuse,
+jamais satisfaite du statut quo,
+impatiente, curieuse, méthodique, finalement sans peur et toujours prête à se mettre en danger, en danger mortel, n'ayant pas peur de l'anéantissement intellectuel ou de la dissolution de sa personnalité face à l'adversité, face à la torture même, n'ayant pas peur de se désintégrer dans l'immensité du néant, pour qui les milliard d'années de vide; c'est à dire, la quantité infinie de vide avant nous et la quantité infinie de vide après nous n'inspirait aucun vertige, que ce soit par manque de lucidité d'ailleurs, ou pour des raisons métaphysiques, peu importe, elle a pas peur de la mort on vous dit.
+cette personne,
+rare,
+existe-t-elle seulement on se demande
+
+qui n'est d'ailleurs pas nécessairement la personne qui a cliqué tout à l'heure
+
+mais bon c'est peut être elle, who knows
+
+cette personne
+
+cette personne
+décide de toucher sa souris d'ordinateur et de cliquer sur le bouton droit de la souris.
+
+## old stuff
+
+,
+bref,
+pour en revenir au pointeur de souris,
+que vous êtes,
+et que je suis.,
+saviez-vous que le pointeur de souris a été inventé en 1968?,
+on peut donc dire que la souris d'ordinateur est plus jeune que ma mère,
+puisque ma mère est née en 1957.,
+ma mère, Michèle Planche.,
+Avant que Douglas Englebart,
+né en 1925,
+n'invente la souris d'ordinateur,
+il n'était pas possible de pointer,
+il n'était pas possible de glisser-déposer,
+il n'était pas possible de scroller,
+il n'était pas possible de cliquer sur la roulette de sa souris,
+il n'était pas possible de double-cliquer,
+il n'était pas possible de simple-cliquer,
+il n'était pas possible de passer ses nerfs sur la souris en cliquant plus fort que nécéssaire ou plus vite que nécéssaire.,
+il était bien sûr possible d'insulter son ordinateur ou le jeter par la fenêtre,
+de prendre le clavier et de taper sur l'écran avec violence,
+de mettre un coup de pied dans l'ordinateur,
+d'arracher les touches du clavier,
+de mordre le cable d'alimentation,
+de claquer le côté du moniteur cathodique,
+de prendre une paire de ciseaux et de découper méticuleusement la disquette 3 pouces.,
+d'un autre côté,,
+Il était bien sûr possible de communiquer avec son ordinateur,,
+mais il fallait pour ça utiliser un outil professionnel muni d'un trop grand nombre de touches,
+le clavier.,
+ma grand-mère est née en 1929,
+donc après Douglas Englebart mais avant ma mère.,
+les premiers ordinateurs sont nés dans les années 40,
+donc après ma grand-mère mais avant ma mère.,
+et après le début de la seconde guerre mondiale.,
+née en 1939.,
+la seconde guerre mondiale fut la cause principale du développement de l'informatique,
+parce qu'il fallait casser les codes que les nazis utilisaient pour syncroniser leurs attaques sur les convois dans l'Atlantique,
+notamment.,
+s'il n'y avais pas eu l'informatique,
+disent les conservateurs des musées sur l'informatique,
+qui sont à la fois les personnes les mieux placées pour tenir ce genre de propos, mais qui sont également certainement les personnes qui ont le plus intérêt à éxagérer l'utilité des ordinateurs en général,
+les ordinateurs ont raccourci la guerre de 1, 2 ou 4 ans, disent-ils.,
+sans les ordinteurs, nous n'aurions pas gagné la guerre, ajouta Churchill.,
+né en 1874.,
+d'autres personnes prétendent que les ordinateurs n'ont servi à rien,
+et ne serviront d'ailleurs jamais à rien.,
+mais ces personnes exagèrent sans doute.,
+s'il n'y avait pas eu la guerre ou s'il n'y avait pas eu ma grand-mère,
+je ne serais pas actuellement devant vous en train de parler de l'histoire de l'informatique.,
+mais assez parlé.,
+le playtest touche a sa fin,
+dans la dernière séquence de cette présentation,,
+je vais venir vous chercher,
+cachez-vous parce que si j'arrive à vous toucher,,
+ça provoquera votre mort.,
+,
+
+## older stuff
+
+Il était une fois l'histoire d'un groupe de personnes.
+
+Ces personnes, curieuses et entreprenantes, s'étaient rassemblées dans une salle. Se fiant à des informations glanées sur internet, ou déposées dans leurs oreilles par un pair, elles avaient décidé de s'enfermer ensemble volontairement, pour vivre une expérience à mi-chemin entre le rituel et le divertissement.
+
+Ces personnes n'avaient pas peur.
+
+Non vraiment, c'étaient des personnes vraiment... Braves.
+
+Néanmoins, il se passait une chose inhabituelle.
+
+Contrairement à ce qui se passait d'habitude quand le groupe de personnes s'enfermait volontairement dans une salle, le plateau de théâtre était resté vide.
+
+Habituellement, le groupe de personnes était récompensé assez rapidement après s'être assis dans la salle. Récompensé, parce qu'elles avaient dépassé leur peur de s'enfermer avec des inconnu.e.s, en sachant très bien qu'elles allaient devoir, une heure durant, faire passer l'air exhalé par de nombreux autres poumons à l'intérieur de leurs propres poumons. Dont des poumons citadins tout jaunes et flétris par le tabac, on le sait parce qu'on a vu des images de vos poumons sur les paquets de cigarettes. (pause)
+
+Donc imaginez un peu l'air qui sort de ces poumons, ça peut pas être un air frais de la montagne qui sent bon l'épicéa n'est-ce-pas? Bon en même temps, vous avez raison, les poumons de citadins qui ne fument pas sont bien flétris aussi et encore on est pas à plaindre hein, imaginez un peu comment ils étaient les poumons des gens en 1850 en Angleterre. (tousse) Normalement, comme je disais (renifle), pardon, (se mouche),
+
+le groupe de personnes était récompensé d'avoir sacrifié une soirée entière de leur vie, où iels auraient pu jouer à Fortnite, à Roblox, à Counter-Strike 2, à Elden Ring, à Geoguessr, à The Witcher 3 : Wild Hunt – Édition Jeu de l'Année, au Seigneur des Anneaux : La Bataille pour la Terre du Milieu II – L'Avènement du Roi-Sorcier, à Dragon Quest Heroes : Le Mal qui menace l'Arbre du Monde, à Dragon Quest III : et la légende fut, trois petits points, à Dragon Quest VIII : Le ciel, la mer, la terre et la princesse maudite, à Dragon Quest I, la grande catastrophe sémantique du XXIe siècle, à Dragon Quest X, les élections législatives anticipées françaises de 2024.
+
+Leur récompense, c'était la présence d'une personne réelle, devant eux, en chair et en os, respirant, parlant, avec un coeur, des cordes vocales, enfin, le plus souvent avec des cordes vocales, et toutes choses égales par ailleurs, avec des poumons.
+
+Mais là, personne. En tout cas personne sur le plateau.
+
+<!-- lol tu te rappelles qu'on va jouer dans un cinéma? -->
+
+Pourquoi? Comment était-ce possible de refuser au groupe de personnes courageuse cet égard, ce qui était tout de même la moindre des choses.
+
+Est ce que le théâtre se foutait de leur gueule en fait? Non parce que. Ou alors... Est ce que l'artiste... c'est l'artiste qui s'était foutu de la gueule du théâtre, il avait vendu un Chekov au théâtre en se disant allez ça passe et puis on verra ce que je fait quand j'aurai l'argent. Ou alors, c'était une personne travaillant à la programmation du théâtre qui voulait saboter de l'intérieur le fonctionnement du théâtre,
+
+pour que le directeur soit décrédibilisé auprès de ses tutelles, afin de prendre sa place quand il se ferait éjecter. Ou alors, c'était un bot, un bot Russe, qui avait envoyé un message de phishing au théâtre, proposant de monter un Chekov (un compatriote), le théâtre était tombé dans le panneau, la coprod avait servi à financer la guerre en Ukraine, pendant que le bot envoyait ce texte au théâtre pour camoufler l'embrouille.
+
+mais le groupe de personnes, qui n'étaient pas dépourvues de sens de l'observation, avaient remarqué qu'il y avait des souris d'ordinateur disposées dans les gradins. C'était bien la preuve que l'artiste, ou le bot Russe, avait prévu qu'il se passe quelque chose ici. Ou alors c'était par pur sadisme, et en fait les souris n'étaient même pas branchées.
+
+C'est alors (pause) qu'une personne dans le groupe (pause) qui s'était d'ailleurs toujours vue comme une personne aventureuse, exploratrice, ambitieuse, jamais satisfaite du statut quo, impatiente, curieuse, méthodique, finalement sans peur et toujours prête à se mettre en danger, en danger mortel, n'ayant pas peur de l'anéantissement intellectuel ou de la dissolution de sa personnalité face à l'adversité, face à la torture même,
+
+n'ayant pas peur de se désintégrer dans l'immensité du néant, pour qui les milliard d'années de vide; c'est à dire, la quantité infinie de vide avant nous et la quantité infinie de vide après nous n'inspirait aucun vertige, que ce soit par manque de lucidité d'ailleurs, ou pour des raisons métaphysiques, peu importe, elle a pas peur de la mort on vous dit. Cette personne, rare, décida de toucher sa souris d'ordinateur et de cliquer sur le bouton droit de la souris.
+
+## even older stuff
+
+pendant l'entrée public, c'est le mode bac à sable. Tous les curseurs sont présents dans le coin droit de l'écran, à la même position. dès qu'une personne bouge sa souris ça fait spawner un nouveau curseur, qui est actif et peut appuyer sur le bouton "bonjour". Le bouton "bonjour" produit un son qui dit bonjour.
+
+pis c'est pas clair comment mais ça recommence et cette fois y'a un soleil qui tourne et y'a deux boutons "bonjour" et "bonsoir". lol
+il y a aussi une petite maison
+
+<!-- rien à l'écran. -->
+
+<!-- la première personne qui effectue un clic avec sa souris voit son curseur apparaître dans l'écran. -->
+
+<!-- le bouton bonjour apparaît une fois que tout le monde est assis, la lumière diminue dans la salle. -->
+
+_1 clic sur le bouton bonjour_
+
+<!-- le bouton bonjour reste gris pendant un temps x qui est défini par la durée du fichier son du narrateur. -->
+
+<!-- A/B testing :
+narrateur voix / narrateur texte
+bouton qui interrompt / bouton qui doit attendre -->
+
+VOUS : bonjour.
+
+NARRATEUR (textuellement) :
+bonjour! comment puis-je vous être utile aujourd'hui?
+
+VOUS : bonjour.
+
+NARRATEUR :
+rebonjour! vous m'avez déjà salué et, cette formalité étant remplie, nous pouvons tout à fait passer à la suite et avoir une conversation normale. De quoi désirez vous parler aujourd'hui?
+
+VOUS : bonjour.
+
+NARRATEUR :
+je remarque que c'est la troisième fois que vous me dites bonjour. Est-ce que tout va bien?
+
+VOUS : bonjour.
+
+NARRATEUR :
+je remarque que c'est la quatrième fois que vous me dites bonjour. Tenir une véritable conversation avec une autre personne peut présenter de nombreux avantages :
+
+- vous pouvez partager des idées et obtenir de nouvelles perspectives sur votre personnalité ou vos projets
+- une conversation peut également servir à échanger des histoires humoristiques pour améliorer votre humeur
+- tenir une conversation avec une personne permet également d'établir des liens affectifs.
+
+VOUS : bonjour.
+
+NARRATEUR :
+vous aimez vraiment dire bonjour. C'est tout à votre honneur, j'y vois une certaine sobriété.
+
+VOUS : bonjour.
+
+NARRATEUR :
+Alors en soi ça ne me dérange pas de recevoir autant de bonjours, mais j'aimerais savoir s'il y a éventuellement autre chose dont vous voudriez parler?
+
+VOUS : bonjour.
+
+NARRATEUR :
+Vous êtes un véritable athlète du bonjour. N'hésitez pas à engager une conversation avec moi si vous voulez faire une pause.
+
+VOUS : bonjour.
+
+NARRATEUR :
+Wow! Déjà 7 bonjours au compteur.
+
+VOUS : bonjour.
+
+NARRATEUR :
+Je vous décerne la médaille d'or du bonjour. (8 bonjours!)
+
+VOUS : bonjour.
+
+NARRATEUR :
+Dire bonjour de manière répétée peut avoir un certain nombre de significations :
+
+- la personne disant "bonjour" de manière répétée cherche à provoquer son interlocuteur, éventuellement dans le but de lui faire perdre la face
+- la personne disant "bonjour" est victime d'anxiété sociale. Son cerveau tourne à plein régime, elle est prise d'assaut par des pensées envahissantes et cherche à gagner du temps en disant "bonjour", le temps de repousser ses démons.
+- la personne disant "bonjour" cherche à dissimuler le fait qu'elle ne maîtrise pas la langue de son interlocuteur, et cherche à gagner du temps pendant qu'elle est en train d'analyser les réponses de son interlocuteur, espérant apprendre rapidement sa langue.
+- la personne disant "bonjour" est désillusionnée au sujet du langage et garde un semblant de sociabilité en dépensant aussi peu d'énergie que possible.
+
+VOUS : bonjour.
+
+NARRATEUR :
+Je vous propose qu'on joue à un jeu, le ni bonjour ni bonjour, le premier qui dit bonjour a perdu.
+
+VOUS : bonjour.
+
+NARRATEUR :
+A ce stade je trouve que votre attitude n'est tout simplement pas productive, si vous n'avez rien d'autre à me dire je vais me taire.
+
+VOUS : bonjour.
+
+NARRATEUR :
+Je vais me taire maintenant.
+
+VOUS : bonjour.
+
+NARRATEUR :
+je refuse de répondre.
+
+VOUS : bonjour.
+
+NARRATEUR :
+[pas de réponse]
+
+VOUS : bonjour.
+
+NARRATEUR :
+[...]
+
+VOUS : bonjour.
+
+NARRATEUR :
+je vous préviens que si vous me dites bonjour encore une fois il y aura des conséquences.
+
+VOUS : bonjour.
+
+NARRATEUR :
+[...]
+
+VOUS : bonjour.
+
+_le curseur du joueur est subitement foudroyé et meurt éléctrocuté_
+
+bon cette séquence c'est une parodie de chatGPT quoi voilà. je suis en deça de la réalité ouin
