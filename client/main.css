@@ -7,6 +7,15 @@
     outline: 1px solid indigo;
   }
 
+  button#bonjourSamuel[hovered] {
+    outline: 2px solid white;
+    background-color: #2563eb;
+  }
+
+  button#bonjourSamuel.clicked {
+    background-color: #16a34a !important;
+  }
+
   button[hovered] {
     outline: 2px solid white;
     background-color: darkblue;

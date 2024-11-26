@@ -11,11 +11,48 @@
     <div id="pointersContainer">
       {{#each allPointers getAdmin=false}}
       <div
-        class="bg-cursor bg-contain pointer w-[30px] h-[50px] bg-no-repeat"
+        class="pointer w-6 h-6"
         style="position:absolute; left:{{ this.coords.x }}px; top:{{ this.coords.y }}px;"
         pointer-id="{{ this.id }}"
         id="pointer{{ this.id }}"
       >
+        <svg
+          version="1.1"
+          id="pointerSvg"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          x="0px"
+          y="0px"
+          viewBox="8 4.3 13 20"
+          enable-background="new 0 0 28 28"
+          xml:space="preserve"
+        >
+          <polygon
+            class="transition-all duration-1000"
+            fill="{{ this.outlineColor }}"
+            points="8.2,20.9 8.2,4.9 19.8,16.5 13,16.5 12.6,16.6 "
+          />
+          <polygon
+            class="transition-all duration-1000"
+            fill="{{ this.outlineColor }}"
+            points="17.3,21.6 13.7,23.1 9,12 12.7,10.5 "
+          />
+          <rect
+            class="transition-all duration-1000"
+            fill="{{ this.bgColor }}"
+            x="12.5"
+            y="13.6"
+            transform="matrix(0.9221 -0.3871 0.3871 0.9221 -5.7605 6.5909)"
+            width="2"
+            height="8"
+          />
+          <polygon
+            class="transition-all duration-1000"
+            fill="{{ this.bgColor }}"
+            points="9.2,7.3 9.2,18.5 12.2,15.6 12.6,15.5 17.4,15.5 "
+          />
+        </svg>
+
         <!-- {{#if hasNick}} -->
 
         <span

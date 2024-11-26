@@ -1,0 +1,27 @@
+<template name="clock">
+  <style>
+    /* Custom CSS for dynamic conic gradient */
+    .dynamic-trail {
+      background: conic-gradient(
+        red 0deg,
+        red var(--trail-angle, 0deg),
+        white var(--trail-angle, 0deg),
+        white 360deg
+      );
+    }
+  </style>
+
+  <div class="flex items-center justify-center h-fit p-8">
+    <!-- Clock Container -->
+    <div
+      class="relative w-16 h-16 rounded-full border-4 border-black overflow-hidden dynamic-trail"
+      id="clock-face"
+    >
+      <!-- Needle -->
+      <div
+        id="needle"
+        class="absolute w-1 h-8 bg-black top-0 left-1/2 transform -translate-x-1/2 origin-bottom"
+      ></div>
+    </div>
+  </div>
+</template>

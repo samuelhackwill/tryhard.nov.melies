@@ -158,7 +158,7 @@ function handlePupitreAction(message) {
 }
 
 function handlePointerMessage(message) {
-  console.log('debug ', message)
+  // console.log('debug ', message)
   let pointer = instance.pointers.get(message.loggerId)
 
   //We don't know this pointer yet.
@@ -227,6 +227,38 @@ Template.show.helpers({
 })
 
 Template.show.events({
+  'mouseup #bonjourSamuel'(e, template, p) {
+    // ok so here we're using JSON parsing & stringifying because we can't store js objects directly in the html-data attributes.
+
+    visitedBefore = JSON.parse(e.target.getAttribute('visitedBy')) || {}
+
+    _id = p.pointer.id
+
+    let pointer = instance.pointers.get(p.pointer.id)
+
+    if (pointer.bgColor == 'red') {
+      // if pointer is red, then this peep has already clicked twice, we don't want to modify its pointer any more so yeah just return.
+      return
+    }
+
+    if (visitedBefore.hasOwnProperty(_id)) {
+      pointer.bgColor = 'red'
+      pointer.outlineColor = '#000000'
+    } else {
+      pointer.bgColor = '#60A5FA'
+    }
+
+    visitedBefore[_id] = true
+
+    e.target.setAttribute('visitedBy', JSON.stringify(visitedBefore))
+
+    // if iclick une fois, vert
+    // if iclick plus que une fois, autre couleur
+    template.pointers.set(p.pointer.id, pointer)
+    // Meteor.setTimeout(function () {
+    // }, 50)
+  },
+
   'mouseup .backgroundContainer'(event, tpl, extra) {
     if (!extra) return
     let pointer = instance.pointers.get(extra.pointer.id)
@@ -440,6 +472,7 @@ function getElementsUnder(pointer) {
   elements = elements.filter((e) => e.id != '')
   //Ignore the pointer itself
   elements = elements.filter((e) => e.id != 'pointer' + pointer.id)
+  elements = elements.filter((e) => e.id != 'pointerSvg')
 
   return elements
 }
@@ -447,8 +480,11 @@ function getElementsUnder(pointer) {
 function checkHover(pointer) {
   let prevHoveredElement = document.getElementById(pointer.hoveredElement)
   let currentHoveredElements = getElementsUnder(pointer)
+
   if (currentHoveredElements.length == 0) return
   let currentHoveredElement = currentHoveredElements[0]
+
+  console.log(prevHoveredElement, currentHoveredElement)
 
   //"We were hovering something, now we're hovering something else"
   if (prevHoveredElement != currentHoveredElement) {
@@ -496,6 +532,8 @@ export const addToDataAttribute = function (element, attr, amount) {
 export const createPointer = function (id, bot = false) {
   return {
     id: id,
+    bgColor: '#000000',
+    outlineColor: '#FFFFFF',
     coords: { x: 0, y: 0 },
     events: [],
     bot: bot,

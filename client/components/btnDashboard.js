@@ -30,6 +30,9 @@ Template.btnDashboard.onCreated(function () {
 
 function handlePupitreAction(message) {
   switch (message.content) {
+    case 'showBonjour-prologue':
+      addCentralButton()
+      break
     case 'showBtnSaluerLaFoule-sprint-1p':
       addButton('saluer', 'Saluer la foule')
       break
@@ -39,7 +42,7 @@ function handlePupitreAction(message) {
     case 'showBtnMMO-sprint-1p':
       addButton('addpxxx', 'Faire venir tout le monde')
       break
-    case 'toggleBtnDashboard-sprint-1p':
+    case 'toggleBtnDashboard-prologue':
       toggleColumn()
       break
     case 'showBtnSanglier-sprint-1p':
@@ -135,4 +138,20 @@ addButton = function (id, value) {
   // Append the button to the desired parent element
   // For example, appending it to the body or a specific container
   document.getElementById('btnContainer').appendChild(button)
+}
+
+addCentralButton = function (id, value) {
+  const button = document.createElement('button')
+
+  // Set the button's attributes and classes
+  button.className =
+    'bg-blue-500 h-fit w-fit absolute left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] text-white font-bold py-2 px-4 rounded shadow-md transition-transform shadow-neutral-800 transform stops-events select-none'
+  button.id = 'bonjourSamuel'
+
+  // Set the button's inner text
+  button.textContent = 'Bonjour'
+
+  // Append the button to the desired parent element
+  // For example, appending it to the body or a specific container
+  document.getElementsByClassName('backgroundContainer')[0].appendChild(button)
 }

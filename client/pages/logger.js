@@ -8,7 +8,6 @@ Template.logger.onCreated(function () {
   this.pointer = new ReactiveDict()
   this.pointer.set('X', 1)
   this.pointer.set('Y', 1)
-
   if (this.data.loggerId) {
     this.loggerId = this.data.loggerId
   } else {
