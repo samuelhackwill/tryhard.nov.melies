@@ -6,12 +6,6 @@ import { handlePupitreMessage } from '../components/feed.js'
 
 import './btnDashboard.html'
 
-toggleColumn = function () {
-  const column = document.getElementById('offscreen-column')
-  column.classList.toggle('translate-x-[calc(100%+2rem)]')
-  column.classList.toggle('translate-x-0')
-}
-
 Template.btnDashboard.onCreated(function () {
   this.text = new ReactiveVar('')
   this.readingIndex = new ReactiveVar(0)
@@ -44,6 +38,8 @@ function handlePupitreAction(message) {
       break
     case 'toggleBtnDashboard-prologue':
       toggleColumn()
+      break
+    case 'startTimer-prologue':
       break
     case 'showBtnSanglier-sprint-1p':
       addButton('addBoar', 'Faire venir le sanglier de Calydon /!\\ DANGER! /!\\ ')
@@ -154,4 +150,10 @@ addCentralButton = function (id, value) {
   // Append the button to the desired parent element
   // For example, appending it to the body or a specific container
   document.getElementsByClassName('backgroundContainer')[0].appendChild(button)
+}
+
+toggleColumn = function () {
+  const column = document.getElementById('offscreen-column')
+  column.classList.toggle('translate-x-[calc(100%+2rem)]')
+  column.classList.toggle('translate-x-0')
 }

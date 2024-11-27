@@ -5,7 +5,19 @@ let emphasisTrigger = false
 
 Template.feed.onCreated(function () {
   streamer.on('pupitreMessage', handlePupitreMessage)
+  streamer.on('pupitreAction', handlePupitreAction)
 })
+
+export const handlePupitreAction = function (message) {
+  switch (message.content) {
+    case 'hideFeed-prologue':
+      instance.feedToggle.set(false)
+      break
+    case 'showFeed-prologue':
+      instance.feedToggle.set(true)
+      break
+  }
+}
 
 export const handlePupitreMessage = function (message) {
   feed = document.getElementById('feed')
@@ -70,3 +82,13 @@ export const handlePupitreMessage = function (message) {
     }, 0)
   }
 }
+
+Template.feed.helpers({
+  feedHider() {
+    if (instance.feedToggle.get() === true) {
+      return 'opacity : 1;'
+    } else {
+      return 'opacity : 0;'
+    }
+  },
+})

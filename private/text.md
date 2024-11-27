@@ -54,12 +54,6 @@ clic clic clic clic clic clic clic clic clic! -->
 
 ## prologue
 
-`initPointers`
-
-`toggleBtnDashboard`
-
-`showBonjour`
-
 - La vie contemplative n'est utile que si elle éclaire la vie _active_, dit le philosophe.
 
 - "Toute la dignité de l’homme est en la pensée. Mais agir bien, c'est savoir penser en action.", dit le philosophe.
@@ -82,7 +76,15 @@ clic clic clic clic clic clic clic clic clic! -->
 
 - toute la vie d'une souris oscille, comme un pendule, de droite à gauche, de la souffrance à l'ennui, dit Schopenhauer.
 
-- "Aussi y a-t-il des gens qui, sans aucunes connaissances, sont plus propres à l'action que d'autres qui sont plus instruits qu'eux ; et, parmi les autres hommes, ceux qui ont de l'expérience sont dans le même cas. En effet, on a beau savoir que les viandes légères sont saines et de facile digestion, si l'on ne sait pas quelles sont ces viandes légères, on ne guérira pas un malade; mais celui qui saura que c'est la chair des oiseaux qui est légère et saine, y réussira mieux," dit le philosophe hashtag team viandard (Aristote).
+- "Aussi y a-t-il des souris qui, sans aucunes connaissances, sont plus propres à l'action que d'autres qui sont plus instruites qu'elles ; et, parmi les autres souris, celles qui ont de l'expérience sont dans le même cas. En effet, on a beau savoir que les viandes légères sont saines et de facile digestion, si l'on ne sait pas quelles sont ces viandes légères, on ne guérira pas une souris malade; mais celle qui saura que c'est la chair des oiseaux qui est légère et saine, y réussira mieux," dit Aristote.
+
+`changeColor`
+`hideFeed`
+`showFeed`
+`initPointers`
+`showBonjour`
+`toggleBtnDashboard`
+`startTimer`
 
 ## sprint entree public
 

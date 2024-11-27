@@ -1,9 +1,17 @@
 import './background.html'
 
+import { streamer } from '../../both/streamer.js'
+
+Template.background.onCreated(function () {
+  //Listen to admin calls to action (like displaying score ou quoi)
+  streamer.on('pupitreAction', handlePupitreAction)
+})
+
 Template.background.helpers({
   getBg() {
     // return 'bg-[blue]'
-    return 'background-color:blue;'
+    console.log(instance.bgColor.get())
+    return 'background-color :' + instance.bgColor.get() + ';'
     // let currentView = Template.instance().view
 
     // while (currentView != null) {
@@ -20,3 +28,12 @@ Template.background.helpers({
     // }
   },
 })
+
+const handlePupitreAction = function (message) {
+  console.log(message)
+  switch (message.content) {
+    case 'changeColor-prologue':
+      instance.bgColor.set('blue')
+      break
+  }
+}

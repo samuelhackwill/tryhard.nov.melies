@@ -2,6 +2,7 @@ import { Template } from 'meteor/templating'
 import { ReactiveDict } from 'meteor/reactive-dict'
 import { streamer } from '../../both/streamer.js'
 import { stepper } from '../stepper.js'
+import { playAudio } from '../audioAssets/audio.js'
 // import { getRandomBossAccessory, getRandomAccessory } from '../dressup.js'
 // import { getRandomTree } from '../trees.js'
 import {
@@ -33,6 +34,9 @@ let bots = []
 let players = []
 
 Template.show.onCreated(function () {
+  this.feedToggle = new ReactiveVar(true)
+  this.bgColor = new ReactiveVar('#1C1917')
+
   this.scoreSprintEntreePublic = new ReactiveDict()
   this.scoreSprint1p = new ReactiveDict()
   this.scoreSprint2p = new ReactiveDict()
@@ -229,6 +233,7 @@ Template.show.helpers({
 Template.show.events({
   'mouseup #bonjourSamuel'(e, template, p) {
     // ok so here we're using JSON parsing & stringifying because we can't store js objects directly in the html-data attributes.
+    playAudio()
 
     visitedBefore = JSON.parse(e.target.getAttribute('visitedBy')) || {}
 
@@ -236,17 +241,17 @@ Template.show.events({
 
     let pointer = instance.pointers.get(p.pointer.id)
 
-    if (pointer.bgColor == 'red') {
+    if (pointer.bgColor == '#60A5FA') {
       // if pointer is red, then this peep has already clicked twice, we don't want to modify its pointer any more so yeah just return.
       return
     }
 
-    if (visitedBefore.hasOwnProperty(_id)) {
-      pointer.bgColor = 'red'
-      pointer.outlineColor = '#000000'
-    } else {
-      pointer.bgColor = '#60A5FA'
-    }
+    // if (visitedBefore.hasOwnProperty(_id)) {
+    //   pointer.bgColor = 'red'
+    //   pointer.outlineColor = '#000000'
+    // } else {
+    pointer.bgColor = '#60A5FA'
+    // }
 
     visitedBefore[_id] = true
 
@@ -484,7 +489,7 @@ function checkHover(pointer) {
   if (currentHoveredElements.length == 0) return
   let currentHoveredElement = currentHoveredElements[0]
 
-  console.log(prevHoveredElement, currentHoveredElement)
+  // console.log(" debug", prevHoveredElement, currentHoveredElement)
 
   //"We were hovering something, now we're hovering something else"
   if (prevHoveredElement != currentHoveredElement) {
