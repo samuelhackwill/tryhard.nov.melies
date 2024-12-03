@@ -233,7 +233,11 @@ Template.show.helpers({
 Template.show.events({
   'mouseup #bonjourSamuel'(e, template, p) {
     // ok so here we're using JSON parsing & stringifying because we can't store js objects directly in the html-data attributes.
-    playAudio()
+    randomDelay = randomBetween(50, 500)
+
+    Meteor.setTimeout(function () {
+      playAudio()
+    }, randomDelay)
 
     visitedBefore = JSON.parse(e.target.getAttribute('visitedBy')) || {}
 

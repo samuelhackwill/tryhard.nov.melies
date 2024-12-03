@@ -36,7 +36,7 @@ on run {input, parameters}
 			-- Open a new tab in Firefox and navigate to URL
 			tell application "System Events"
 				keystroke "t" using {command down} -- Open a new tab
-				delay 1
+				delay 3
 				keystroke fullURL
 				keystroke return
 				delay 3 -- Wait for the page to load
@@ -44,12 +44,12 @@ on run {input, parameters}
 			
 			-- Perform a real left-click at 100, 100 pixels
 			performMouseClick(400, 400, "left")
-			delay 1
+			delay 3
 			
 			
 			-- Perform a real left-click at 100, 100 pixels
 			performMouseClick(400, 400, "right")
-			delay 1
+			delay 3
 			
 			-- Simulate pressing the Down Arrow key three times and then Enter
 			tell application "System Events"
@@ -63,14 +63,31 @@ on run {input, parameters}
 			end tell
 			
 			-- Wait for a moment before opening the next URL
-			delay 0.5
+			delay 3
 			
 			-- Now, open the URL for "samm.local:3000" with the mouse ID (like 1A, 1B)
-			set mouseURL to "http://samm.local"
+			-- set mouseURL to "http://samm.local"
 			
 			tell application "System Events"
 				delay 1
-				keystroke mouseURL -- Type the full URL including port 3000
+				
+				-- keystroke mouseURL Type the full URL including port 3000
+				
+				-- we're sticking to static ip for now, i. would be better to get it dynamicaly, but then there's the issues that actionscript is en galère with typing numbers for some reason
+				
+				key code 18 using {shift down} -- 1
+				key code 25 using {shift down} -- 9
+				key code 19 using {shift down} -- 2
+				key code 43 using {shift down} -- .
+				key code 18 using {shift down} -- 1
+				key code 22 using {shift down} -- 6
+				key code 28 using {shift down} -- 8
+				key code 43 using {shift down} -- .
+				key code 18 using {shift down} -- 1
+				key code 43 using {shift down} -- .
+				key code 22 using {shift down} -- 6
+				key code 21 using {shift down} -- 4
+				
 				delay 0.3
 				key code 47
 				-- :
@@ -89,7 +106,16 @@ on run {input, parameters}
 				
 				keystroke return -- Press Enter to load the URL
 				delay 3 -- Wait for the page to load
+				
+				
+				
+				
 			end tell
+			
+			-- Perform a real left-click at 100, 100 pixels
+			performMouseClick(700, 700, "left")
+			delay 1
+			
 			
 			-- Increment the port number for the next mouse
 			set portNum to portNum + 1
