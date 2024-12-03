@@ -41,6 +41,7 @@ Template.show.onCreated(function () {
   this.scoreSprint1p = new ReactiveDict()
   this.scoreSprint2p = new ReactiveDict()
   this.areNamesHidden = new ReactiveVar(true)
+  this.arePointersHidden = new ReactiveVar(false)
   this.plantedTrees = new ReactiveDict()
   this.pointers = new ReactiveDict()
 
@@ -105,6 +106,21 @@ function handlePupitreAction(message) {
         index++
       })
       break
+    case 'togglePointers-prologue':
+      _trueOrFalse = instance.arePointersHidden.get()
+      _hidden = !_trueOrFalse
+
+      const button = document.getElementById('bonjourSamuel') || false
+
+      if (_hidden) {
+        if (button) button.classList.add('pointer-events-none')
+      } else {
+        if (button) button.classList.remove('pointer-events-none')
+      }
+      instance.arePointersHidden.set(_hidden)
+
+      break
+
     case 'startRace-sprint-entree-public':
       instance.scoreSprintEntreePublic.set('startTime', new Date())
       break
@@ -198,6 +214,13 @@ Template.show.helpers({
       return false
     }
   },
+  arePointersHidden() {
+    if (Template.instance().arePointersHidden.get() === true) {
+      return 'opacity-0'
+    } else {
+      return 'opacity-1'
+    }
+  },
   areNamesHidden() {
     if (Template.instance().areNamesHidden.get() === true) {
       return 'opacity-0'
@@ -232,6 +255,8 @@ Template.show.helpers({
 
 Template.show.events({
   'mouseup #bonjourSamuel'(e, template, p) {
+    if (instance.arePointersHidden.get()) return
+
     // ok so here we're using JSON parsing & stringifying because we can't store js objects directly in the html-data attributes.
     randomDelay = randomBetween(50, 500)
 
@@ -269,7 +294,9 @@ Template.show.events({
   },
 
   'mouseup .backgroundContainer'(event, tpl, extra) {
+    if (instance.arePointersHidden.get()) return
     if (!extra) return
+
     let pointer = instance.pointers.get(extra.pointer.id)
 
     if (extra.pointer.id == 'samuel') {
@@ -279,7 +306,9 @@ Template.show.events({
 
   'mouseup #background'(event, tpl, extra) {
     // console.log('click background')
+    if (instance.arePointersHidden.get()) return
     if (!extra) return
+
     let pointer = instance.pointers.get(extra.pointer.id)
     if (!pointer) {
       return
@@ -396,6 +425,8 @@ Template.show.events({
     }
   },
   'mouseup .pointer'(event, tpl, extra) {
+    if (instance.arePointersHidden.get()) return
+
     //Boss "kill on click" behaviour
     if (extra.pointer.id == 'samuel') {
       //We're a pointer clicking on another pointer (the _pointee_)
