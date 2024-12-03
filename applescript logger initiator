@@ -1,0 +1,129 @@
+
+use framework "Foundation"
+use scripting additions
+
+on run {input, parameters}
+	set filePath to "/Users/samuel/htdocs/tryhard/tryhard.nov.melies/mouses.json" -- Path to your JSON file
+	
+	-- Read JSON file as UTF-8 text
+	set jsonString to readFile(filePath)
+	
+	if jsonString is missing value then
+		display dialog "Unable to read the JSON file."
+		return
+	end if
+	
+	-- Parse the JSON string into a dictionary
+	set jsonData to parseJSON(jsonString)
+	
+	if jsonData is missing value then
+		display dialog "Failed to parse JSON."
+		return
+	end if
+	
+	-- Iterate through each key-value pair in the JSON data
+	tell application "Firefox" to activate
+	repeat with key in (jsonData's allKeys()) -- Get all top-level keys in JSON
+		set idList to (jsonData's objectForKey:key) as list
+		set baseURL to "http://" & key & ".local:" -- Base URL with dynamic port
+		
+		-- Keep track of the port number (starting from 80)
+		set portNum to 80
+		
+		repeat with itemValue in idList
+			set fullURL to baseURL & portNum
+			
+			-- Open a new tab in Firefox and navigate to URL
+			tell application "System Events"
+				keystroke "t" using {command down} -- Open a new tab
+				delay 1
+				keystroke fullURL
+				keystroke return
+				delay 3 -- Wait for the page to load
+			end tell
+			
+			-- Perform a real left-click at 100, 100 pixels
+			performMouseClick(400, 400, "left")
+			delay 1
+			
+			
+			-- Perform a real left-click at 100, 100 pixels
+			performMouseClick(400, 400, "right")
+			delay 1
+			
+			-- Simulate pressing the Down Arrow key three times and then Enter
+			tell application "System Events"
+				key code 125 -- Down arrow key (first time)
+				delay 0.2
+				key code 125 -- Down arrow key (second time)
+				delay 0.2
+				key code 125 -- Down arrow key (third time)
+				delay 0.2
+				keystroke return -- Press Enter
+			end tell
+			
+			-- Wait for a moment before opening the next URL
+			delay 0.5
+			
+			-- Now, open the URL for "samm.local:3000" with the mouse ID (like 1A, 1B)
+			set mouseURL to "http://samm.local"
+			
+			tell application "System Events"
+				delay 1
+				keystroke mouseURL -- Type the full URL including port 3000
+				delay 0.3
+				key code 47
+				-- :
+				delay 0.3
+				key code 20 using {shift down} -- 3
+				delay 0.3
+				key code 29 using {shift down} -- 0
+				delay 0.3
+				key code 29 using {shift down} -- 0
+				delay 0.3
+				key code 29 using {shift down} -- 0
+				
+				delay 0.3
+				set mousePath to "/?id=" & itemValue
+				keystroke mousePath
+				
+				keystroke return -- Press Enter to load the URL
+				delay 3 -- Wait for the page to load
+			end tell
+			
+			-- Increment the port number for the next mouse
+			set portNum to portNum + 1
+		end repeat
+	end repeat
+end run
+
+-- Function to read file content
+on readFile(filePath)
+	try
+		set fileHandle to POSIX file filePath
+		set fileContent to read fileHandle as «class utf8»
+		return fileContent
+	on error
+		return missing value
+	end try
+end readFile
+
+-- Function to parse JSON string into AppleScript dictionary
+on parseJSON(jsonText)
+	set jsonString to current application's NSString's stringWithString:jsonText
+	set jsonData to current application's NSJSONSerialization's JSONObjectWithData:(jsonString's dataUsingEncoding:(current application's NSUTF8StringEncoding)) options:0 |error|:(missing value)
+	if jsonData is missing value then
+		return missing value
+	end if
+	return jsonData
+end parseJSON
+
+-- Function to perform mouse click at given coordinates
+on performMouseClick(x, y, clickType)
+	set cliclickPath to "/usr/local/bin/cliclick" -- Adjust if installed elsewhere
+	if clickType is equal to "left" then
+		do shell script cliclickPath & " m:" & x & "," & y & " c:."
+	else if clickType is equal to "right" then
+		do shell script cliclickPath & " m:" & x & "," & y & " rc:."
+	end if
+end performMouseClick
