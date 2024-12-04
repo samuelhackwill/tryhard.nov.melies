@@ -94,6 +94,9 @@ Template.show.onRendered(function () {
 
 function handlePupitreAction(message) {
   switch (message.content) {
+    case 'showNicks-prologue':
+      instance.areNamesHidden.set(false)
+      break
     case 'initPointers-prologue':
       console.log('init pointers')
       let index = 1
@@ -143,7 +146,7 @@ function handlePupitreAction(message) {
 
       if (count < 0)
         text =
-          "oups Samuel a oublié de lancer la course! _again!_ Ou alors il y a un bug peut-être, auquel cas pardon Samuel d'avoir été passif-agressif. Enfin ceci dit si y'a un bug c'est aussi de ma faute donc bon"
+          "oups Samuel a oublié de lancer le programme pour regarder qui était en train de faire des trucs avec sa souris! _again!_ Ou alors il y a un bug peut-être, auquel cas pardon Samuel d'avoir été passif-agressif. Enfin ceci dit si y'a un bug c'est aussi de ma faute donc bon"
 
       handlePupitreMessage({ type: 'newLine', content: text })
 
