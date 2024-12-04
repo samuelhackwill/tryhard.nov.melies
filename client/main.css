@@ -27,5 +27,33 @@
 }
 
 body {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
+}
+
+/* for the clock */
+.dynamic-trail {
+  background: conic-gradient(
+    red 0deg,
+    red var(--trail-angle, 0deg),
+    white var(--trail-angle, 0deg),
+    white 360deg
+  );
+}
+
+/* Pulsating animation */
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+  }
+  50% {
+    transform: scale(1.1) translate(-50%, -50%);
+  }
+}
+
+/* Faster pulsating animation */
+.pulse-fast {
+  animation: pulse 1s infinite ease-in-out;
 }

@@ -4,11 +4,16 @@ import { addToDataAttribute } from '../pages/show.js'
 
 import { handlePupitreMessage } from '../components/feed.js'
 
+import { prologue } from '../textAssets/dashboard.js'
+
 import './btnDashboard.html'
 
 Template.btnDashboard.onCreated(function () {
   this.text = new ReactiveVar('')
   this.readingIndex = new ReactiveVar(0)
+
+  // fuck this i'm using global reactive sources
+  isClockDisplayed = new ReactiveVar(false)
 
   Meteor.call('returnText', (err, res) => {
     if (err) {
@@ -39,16 +44,36 @@ function handlePupitreAction(message) {
     case 'toggleBtnDashboard-prologue':
       toggleColumn()
       break
-    case 'startTimer-prologue':
-      break
     case 'showBtnSanglier-sprint-1p':
       addButton('addBoar', 'Faire venir le sanglier de Calydon /!\\ DANGER! /!\\ ')
+      break
+    case 'showDocteurs1-prologue':
+      addText('doc1', prologue[1])
+      break
+    case 'showDocteurs2-prologue':
+      addText('doc1', prologue[2])
+      break
+    case 'showDocteurs3-prologue':
+      addText('doc1', prologue[3])
+      break
+    case 'showDocteurs4-prologue':
+      addText('doc1', prologue[4])
+      break
+    case 'showClock-prologue':
+      addClock()
       break
 
     default:
       break
   }
 }
+
+Template.btnDashboard.helpers({
+  displayClock() {
+    console.log(isClockDisplayed.get())
+    return isClockDisplayed.get()
+  },
+})
 
 Template.btnDashboard.events({
   'mouseup #saluer'(e, template, p) {
@@ -121,6 +146,10 @@ removeBgClassesFromNode = function (node) {
   node.className = updatedClasses.join(' ')
 }
 
+addClock = function () {
+  isClockDisplayed.set(true)
+}
+
 addButton = function (id, value) {
   const button = document.createElement('button')
 
@@ -152,8 +181,59 @@ addCentralButton = function (id, value) {
   document.getElementsByClassName('backgroundContainer')[0].appendChild(button)
 }
 
-toggleColumn = function () {
+export const toggleColumn = function () {
   const column = document.getElementById('offscreen-column')
   column.classList.toggle('translate-x-[calc(100%+2rem)]')
   column.classList.toggle('translate-x-0')
+}
+
+addText = function (id, value) {
+  // Get the offscreen column container
+  const offscreenColumn = document.getElementById('offscreen-column')
+
+  // Create a temporary wrapper div for the animation
+  const tempWrapper = document.createElement('div')
+  tempWrapper.className = 'flex flex-col transform transition-transform duration-500 ease-in-out'
+  tempWrapper.style.transform = 'translateX(100%)' // Start off-screen
+
+  // Create the actual content div that will eventually be appended to the offscreen column
+  const parentDiv = document.createElement('div')
+  parentDiv.className = 'flex flex-col'
+
+  const innerDiv = document.createElement('div')
+  innerDiv.className =
+    'flex items-center justify-center flex-row m-4 w-fit self-end rounded-2xl h-auto bg-gray-200 shadow-lg'
+
+  const childContainer = document.createElement('div')
+  childContainer.classList.add('p-4', 'mb-2')
+
+  const span = document.createElement('span')
+  span.className = 'w-full text-black'
+  span.id = id
+  span.textContent = value
+
+  childContainer.appendChild(span)
+  innerDiv.appendChild(childContainer)
+  parentDiv.appendChild(innerDiv)
+
+  // Append the actual content div inside the temporary wrapper
+  tempWrapper.appendChild(parentDiv)
+
+  // Append the temporary wrapper to the offscreen column
+  offscreenColumn.appendChild(tempWrapper)
+
+  // Force reflow to ensure the browser registers the off-screen position
+  const reflow = tempWrapper.offsetHeight
+
+  // Trigger the animation by setting transform to 0 (slide in)
+  tempWrapper.style.transform = 'translateX(0%)'
+
+  // After the animation completes, move the content to the offscreen column and remove the temporary wrapper
+  tempWrapper.addEventListener('transitionend', function () {
+    // Move the inner content to the correct place in the column
+    offscreenColumn.appendChild(parentDiv)
+
+    // Remove the temporary wrapper
+    tempWrapper.remove()
+  })
 }

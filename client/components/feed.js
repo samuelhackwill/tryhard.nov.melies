@@ -13,7 +13,14 @@ export const handlePupitreAction = function (message) {
     case 'hideFeed-prologue':
       instance.feedToggle.set(false)
       break
+    case 'clearFeed-prologue':
+      const myNode = document.getElementById('feed')
+      while (myNode.firstChild) {
+        myNode.removeChild(myNode.lastChild)
+      }
+      break
     case 'showFeed-prologue':
+      document.getElementById('feed').classList.remove('duration-[10s]')
       instance.feedToggle.set(true)
       break
   }

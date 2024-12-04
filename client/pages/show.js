@@ -172,6 +172,16 @@ function handlePupitreAction(message) {
       instance.areNamesHidden.set(false)
       break
 
+    case 'killBonjourBtn-prologue':
+      // zoom.to({
+      //   element: document.getElementById('bonjourSamuel'),
+      //   padding: 200,
+      // })
+      // $('#bonjourSamuel').zoomTo({ targetsize: 0.75, duration: 600 })
+
+      // so all the zoom plugins are fucked.
+      break
+
     default:
       break
   }
@@ -258,11 +268,8 @@ Template.show.events({
     if (instance.arePointersHidden.get()) return
 
     // ok so here we're using JSON parsing & stringifying because we can't store js objects directly in the html-data attributes.
-    randomDelay = randomBetween(50, 500)
 
-    Meteor.setTimeout(function () {
-      playAudio()
-    }, randomDelay)
+    playAudio('bonjour')
 
     visitedBefore = JSON.parse(e.target.getAttribute('visitedBy')) || {}
 
@@ -589,6 +596,20 @@ function createBot(id) {
   return createPointer(id, true)
 }
 
+export const die = function (element) {
+  element.classList.remove('transition-transform')
+  element.classList.add('transition-opacity', 'duration-250')
+  playAudio('oof')
+
+  element.addEventListener('transitionend', (event) => {
+    element.classList.add('hidden')
+  })
+
+  Meteor.setTimeout(function () {
+    element.style.opacity = '0'
+  }, 50)
+}
+
 //Receives the text that finished displaying in the lettreur.
 //We can check what's displayed and react accordingly (eg launch a bot routine)
 // TellShowWeFinishedDisplayingParagraph = function (text) {
@@ -693,3 +714,52 @@ function createBot(id) {
 //       break
 //   }
 // }
+
+dvdMove = function (targetId) {
+  const button = document.getElementById(targetId)
+
+  // Initialize position, velocity, and screen bounds
+  let x = Math.random() * window.innerWidth
+  let y = Math.random() * window.innerHeight
+  let vx = 2 + Math.random() * 3 // Velocity in x direction
+  let vy = 2 + Math.random() * 3 // Velocity in y direction
+
+  // Available colors for collision
+  const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6', '#1abc9c']
+
+  moveButton()
+
+  function moveButton() {
+    // Update position
+    x += vx
+    y += vy
+
+    // Check for collisions with screen edges
+    if (x <= 0 || x + button.offsetWidth >= window.innerWidth) {
+      vx *= -1 // Reverse x direction
+      changeColor() // Change button color
+    }
+    if (y <= 0 || y + button.offsetHeight >= window.innerHeight) {
+      vy *= -1 // Reverse y direction
+      changeColor() // Change button color
+    }
+
+    // Apply new position
+    button.style.left = `${x}px`
+    button.style.top = `${y}px`
+
+    // Request the next animation frame
+    requestAnimationFrame(moveButton)
+  }
+
+  function changeColor() {
+    const randomColor = colors[Math.floor(Math.random() * colors.length)]
+    button.style.backgroundColor = randomColor
+  }
+
+  // Resize event listener to adjust for window size changes
+  window.addEventListener('resize', () => {
+    x = Math.min(x, window.innerWidth - button.offsetWidth)
+    y = Math.min(y, window.innerHeight - button.offsetHeight)
+  })
+}

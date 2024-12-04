@@ -32,8 +32,11 @@ Template.background.helpers({
 const handlePupitreAction = function (message) {
   console.log(message)
   switch (message.content) {
-    case 'changeColor-prologue':
+    case 'bgToblue-prologue':
       instance.bgColor.set('blue')
+      break
+    case 'bgToblack-prologue':
+      instance.bgColor.set('#1C1917')
       break
   }
 }
