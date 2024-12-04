@@ -197,6 +197,10 @@ function handlePupitreAction(message) {
       dvdPhase2 = true
       break
 
+    case 'showClocks':
+      instance.areClocksHidden.set(false)
+      break
+
     case 'startTimers':
       requestAnimationFrame(animateMiniClocks)
 
@@ -246,6 +250,13 @@ Template.show.helpers({
   },
   arePointersHidden() {
     if (Template.instance().arePointersHidden.get() === true) {
+      return 'opacity-0'
+    } else {
+      return 'opacity-1'
+    }
+  },
+  areClocksHidden() {
+    if (Template.instance().areClocksHidden.get() === true) {
       return 'opacity-0'
     } else {
       return 'opacity-1'

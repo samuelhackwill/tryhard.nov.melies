@@ -240,6 +240,7 @@ je ne serais pas actuellement devant vous en train de parler de l'histoire de l'
 `showSaveme`
 `savemeDvd`
 `dvdPhase2`
+`showClocks`
 `startTimers`
 
 ## older stuff
