@@ -10,16 +10,16 @@ Template.feed.onCreated(function () {
 
 export const handlePupitreAction = function (message) {
   switch (message.content) {
-    case 'hideFeed-prologue':
+    case 'hideFeed':
       instance.feedToggle.set(false)
       break
-    case 'clearFeed-prologue':
+    case 'clearFeed':
       const myNode = document.getElementById('feed')
       while (myNode.firstChild) {
         myNode.removeChild(myNode.lastChild)
       }
       break
-    case 'showFeed-prologue':
+    case 'showFeed':
       document.getElementById('feed').classList.remove('duration-[10s]')
       instance.feedToggle.set(true)
       break

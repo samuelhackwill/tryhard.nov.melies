@@ -27,11 +27,23 @@ import { handlePupitreMessage } from '../components/feed.js'
 
 import '../components/main.js'
 import './show.html'
+import { animateMiniClocks } from '../components/clock.js'
 
 let eventQueue = []
 let pointers = []
 let bots = []
 let players = []
+
+// THIS IS FOR THE DVD animation stuff
+// Initialize position, velocity, and screen bounds
+let x = Math.random() * window.innerWidth
+let y = Math.random() * window.innerHeight
+let vx = 2 + Math.random() * 3 // Velocity in x direction
+let vy = 2 + Math.random() * 3 // Velocity in y direction
+let dvdPhase2 = false
+
+// Available colors for collision
+const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6', '#1abc9c']
 
 Template.show.onCreated(function () {
   this.feedToggle = new ReactiveVar(true)
@@ -41,6 +53,7 @@ Template.show.onCreated(function () {
   this.scoreSprint1p = new ReactiveDict()
   this.scoreSprint2p = new ReactiveDict()
   this.areNamesHidden = new ReactiveVar(true)
+  this.areClocksHidden = new ReactiveVar(true)
   this.arePointersHidden = new ReactiveVar(false)
   this.plantedTrees = new ReactiveDict()
   this.pointers = new ReactiveDict()
@@ -94,22 +107,10 @@ Template.show.onRendered(function () {
 
 function handlePupitreAction(message) {
   switch (message.content) {
-    case 'showNicks-prologue':
+    case 'showNicks':
       instance.areNamesHidden.set(false)
       break
-    case 'initPointers-prologue':
-      console.log('init pointers')
-      let index = 1
-
-      const len = Object.keys(instance.pointers.all()).length
-
-      Object.entries(instance.pointers.all()).forEach(([key, value]) => {
-        circleRoutine(value, len, index)
-        instance.pointers.set(key, value)
-        index++
-      })
-      break
-    case 'togglePointers-prologue':
+    case 'togglePointers':
       _trueOrFalse = instance.arePointersHidden.get()
       _hidden = !_trueOrFalse
 
@@ -124,13 +125,26 @@ function handlePupitreAction(message) {
 
       break
 
-    case 'startRace-sprint-entree-public':
+    case 'initPointers':
+      console.log('init pointers')
+      let index = 1
+
+      const len = Object.keys(instance.pointers.all()).length
+
+      Object.entries(instance.pointers.all()).forEach(([key, value]) => {
+        circleRoutine(value, len, index)
+        instance.pointers.set(key, value)
+        index++
+      })
+      break
+
+    case 'startCountingPlayers':
       instance.scoreSprintEntreePublic.set('startTime', new Date())
       break
-    case 'endRace-sprint-entree-public':
+    case 'stopCountingPlayers':
       instance.scoreSprintEntreePublic.set('endTime', new Date())
       break
-    case 'countPlayers-sprint-entree-public':
+    case 'displayPlayerCount':
       // we need to substract 2 because 2 of the objects of scroSprintEntreePublic are startTime and endTime
       let plural = { s: '', ont: 'a' }
       let text = ''
@@ -152,37 +166,40 @@ function handlePupitreAction(message) {
 
       break
 
-    case 'startRace-sprint-1p':
-      instance.scoreSprint1p.set('startTime', new Date())
+    // case 'startRace':
+    //   instance.scoreSprint1p.set('startTime', new Date())
+    //   break
+
+    // case 'showNick':
+    //   // get ID of that pointer, associate it with a new nick and show the nick div.
+    //   data = instance.scoreSprint1p.all()
+    //   // get everything and then get the smallest score
+    //   const smallestTime = Object.entries(data).reduce(
+    //     (min, [key, value]) => {
+    //       return value.time < min.value.time ? { key, value } : min
+    //     },
+    //     { key: null, value: { time: Infinity } },
+    //   )
+
+    //   _pointer = instance.pointers.get(smallestTime.key)
+    //   console.log(_pointer)
+    //   _pointer.nick = 'Atalante-du-7e-Arrdt'
+    //   instance.pointers.set(smallestTime.key, _pointer)
+
+    //   instance.areNamesHidden.set(false)
+    //   break
+
+    case 'savemeDvd':
+      dvdMove('saveme')
       break
 
-    case 'showNick-sprint-1p':
-      // get ID of that pointer, associate it with a new nick and show the nick div.
-      data = instance.scoreSprint1p.all()
-      // get everything and then get the smallest score
-      const smallestTime = Object.entries(data).reduce(
-        (min, [key, value]) => {
-          return value.time < min.value.time ? { key, value } : min
-        },
-        { key: null, value: { time: Infinity } },
-      )
-
-      _pointer = instance.pointers.get(smallestTime.key)
-      console.log(_pointer)
-      _pointer.nick = 'Atalante-du-7e-Arrdt'
-      instance.pointers.set(smallestTime.key, _pointer)
-
-      instance.areNamesHidden.set(false)
+    case 'dvdPhase2':
+      dvdPhase2 = true
       break
 
-    case 'killBonjourBtn-prologue':
-      // zoom.to({
-      //   element: document.getElementById('bonjourSamuel'),
-      //   padding: 200,
-      // })
-      // $('#bonjourSamuel').zoomTo({ targetsize: 0.75, duration: 600 })
+    case 'startTimers':
+      requestAnimationFrame(animateMiniClocks)
 
-      // so all the zoom plugins are fucked.
       break
 
     default:
@@ -267,6 +284,17 @@ Template.show.helpers({
 })
 
 Template.show.events({
+  'mouseup #saveme'(e, t, p) {
+    clock = document.getElementById('pointer' + p.pointer.id).querySelector('.miniclock')
+
+    if (clock) {
+      clock.classList.add('opacity-0')
+
+      Meteor.setTimeout(function () {
+        clock.remove()
+      }, 250)
+    }
+  },
   'mouseup #bonjourSamuel'(e, template, p) {
     if (instance.arePointersHidden.get()) return
 
@@ -717,52 +745,80 @@ export const die = function (element) {
 //       break
 //   }
 // }
-
-dvdMove = function (targetId) {
+function dvdMove(targetId) {
   const button = document.getElementById(targetId)
 
-  // Initialize position, velocity, and screen bounds
-  let x = Math.random() * window.innerWidth
-  let y = Math.random() * window.innerHeight
-  let vx = 2 + Math.random() * 3 // Velocity in x direction
-  let vy = 2 + Math.random() * 3 // Velocity in y direction
+  // Calculate the initial position before switching to absolute
+  const rect = button.getBoundingClientRect()
+  const initialX = rect.left
+  const initialY = rect.top
 
-  // Available colors for collision
-  const colors = ['#3498db', '#e74c3c', '#2ecc71', '#f1c40f', '#9b59b6', '#1abc9c']
+  // Switch to absolute positioning and set the initial position
+  button.style.position = 'absolute'
+  button.style.left = `${initialX}px`
+  button.style.top = `${initialY}px`
+  button.style.margin = 0 // Remove any margin to avoid positioning issues
 
-  moveButton()
+  // Start the animation
+  requestAnimationFrame(() => moveButton(targetId))
+}
 
-  function moveButton() {
-    // Update position
-    x += vx
-    y += vy
+function changeColor(targetId) {
+  const button = document.getElementById(targetId)
+  const randomColor = colors[Math.floor(Math.random() * colors.length)]
+  button.style.backgroundColor = randomColor
+}
 
-    // Check for collisions with screen edges
-    if (x <= 0 || x + button.offsetWidth >= window.innerWidth) {
-      vx *= -1 // Reverse x direction
-      changeColor() // Change button color
-    }
-    if (y <= 0 || y + button.offsetHeight >= window.innerHeight) {
-      vy *= -1 // Reverse y direction
-      changeColor() // Change button color
-    }
+function moveButton(targetId) {
+  const button = document.getElementById(targetId)
 
-    // Apply new position
-    button.style.left = `${x}px`
-    button.style.top = `${y}px`
+  // Parse the current position of the button
+  let x = parseFloat(button.style.left) || 0
+  let y = parseFloat(button.style.top) || 0
 
-    // Request the next animation frame
-    requestAnimationFrame(moveButton)
+  // Update position
+  x += vx
+  y += vy
+
+  // Check for collisions with screen edges and add randomness
+  if (x < 0 || x + button.offsetWidth > window.innerWidth) {
+    // Reverse X velocity and add randomness to the angle
+    vx *= -1
+    vx += (Math.random() - 0.5) * 100 // Random adjustment between -1 and 1
+    vy += (Math.random() - 0.5) * 10 // Random Y adjustment for variability
+
+    // Clamp position to avoid overflow
+    if (x < 0) x = 0
+    if (x + button.offsetWidth > window.innerWidth) x = window.innerWidth - button.offsetWidth
+
+    if (dvdPhase2) changeColor(targetId) // Change color
   }
 
-  function changeColor() {
-    const randomColor = colors[Math.floor(Math.random() * colors.length)]
-    button.style.backgroundColor = randomColor
+  if (y < 0 || y + button.offsetHeight > window.innerHeight) {
+    // Reverse Y velocity and add randomness to the angle
+    vy *= -1
+    vx += (Math.random() - 0.5) * 100 // Random X adjustment for variability
+    vy += (Math.random() - 0.5) * 10 // Random adjustment between -1 and 1
+
+    // Clamp position to avoid overflow
+    if (y < 0) y = 0
+    if (y + button.offsetHeight > window.innerHeight) y = window.innerHeight - button.offsetHeight
+
+    if (dvdPhase2) changeColor(targetId) // Change color
   }
 
-  // Resize event listener to adjust for window size changes
-  window.addEventListener('resize', () => {
-    x = Math.min(x, window.innerWidth - button.offsetWidth)
-    y = Math.min(y, window.innerHeight - button.offsetHeight)
-  })
+  // Normalize speed to prevent it from becoming too fast
+  const speedLimit = 5
+  const speed = Math.sqrt(vx * vx + vy * vy)
+  if (speed > speedLimit) {
+    vx = (vx / speed) * speedLimit
+    vy = (vy / speed) * speedLimit
+  }
+
+  // Apply new position
+  button.style.left = `${x}px`
+  button.style.top = `${y}px`
+
+  // Schedule the next frame
+  requestAnimationFrame(() => moveButton(targetId))
 }

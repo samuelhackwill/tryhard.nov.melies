@@ -47,7 +47,7 @@ Template.pupitre.events({
     if (String(this.type) == 'text') {
       sendLine(String(this.value))
     } else {
-      action = String(this.value) + '-' + Template.instance().selectedHeader.get()
+      action = String(this.value)
       sendAction(action)
     }
   },
@@ -59,7 +59,7 @@ Template.pupitre.events({
       if (String(this.type) == 'text') {
         sendLine(String(this.value))
       } else {
-        action = String(this.value) + '-' + Template.instance().selectedHeader.get()
+        action = String(this.value)
         sendAction(action)
       }
     } else {

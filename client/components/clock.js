@@ -23,7 +23,7 @@ Template.clock.onCreated(function () {
 const handlePupitreAction = function (message) {
   console.log(message)
   switch (message.content) {
-    case 'startTimer-prologue':
+    case 'startTimer':
       startCountdown()
       requestAnimationFrame(animateFirst)
       break
@@ -94,13 +94,6 @@ const animateSecond = function (time) {
 
 // Function to interrupt the animation
 const interrupt = function () {
-  const minutesEl = document.getElementById('minutes')
-  const secondsEl = document.getElementById('seconds')
-
-  // Display minutes and seconds
-  minutesEl.textContent = String('00')
-  secondsEl.textContent = String('00')
-
   if (animationFrameId) {
     cancelAnimationFrame(animationFrameId)
     animationFrameId = null
@@ -108,6 +101,12 @@ const interrupt = function () {
     clearInterval(intervalId)
     console.log('Animation interrupted.')
   }
+  const minutesEl = document.getElementById('minutes')
+  const secondsEl = document.getElementById('seconds')
+
+  // Display minutes and seconds
+  minutesEl.textContent = String('00')
+  secondsEl.textContent = String('00')
 }
 
 function updateCountdown() {
@@ -180,4 +179,63 @@ const endCountdown = function () {
       die(button)
     }, 3000)
   }, 3000) // Optional delay between animations
+}
+
+// First animation: Rotate needle and reveal red background trail
+export const animateMiniClocks = function (time) {
+  // Get all clock elements
+  const needles = document.querySelectorAll('.miniclock-needles') // Select all needles
+  const clockFaces = document.querySelectorAll('.miniclock-faces') // Select all clock faces
+  const clocks = document.querySelectorAll('.miniclock') // Select all needles
+
+  if (!startTime) startTime = time
+
+  const elapsed = time - startTime
+  const progress = Math.min(elapsed / duration, 1) // Calculate progress (0 to 1)
+
+  // Calculate the current angle
+  const angle = 360 * progress
+
+  // Update each needle and clock face
+  needles.forEach((needle) => {
+    needle.style.transform = `translateX(-50%) rotate(${angle}deg)`
+  })
+
+  clockFaces.forEach((clockFace) => {
+    clockFace.style.background = `white conic-gradient(
+      rgba(255, 0, 0, 1) ${angle}deg,
+      rgba(255, 0, 0, 0) ${angle}deg
+    )`
+  })
+
+  // Continue the animation if not finished
+  if (progress < 1) {
+    animationFrameId = requestAnimationFrame(animateMiniClocks)
+  } else {
+    clocks.forEach((clock) => {
+      setTimeout(() => {
+        element = findParentWithClassPointer(clock)
+        element.classList.add('opacity-0')
+        die(clock)
+        // but also pointer die
+      }, 3000) // Optional delay between animations
+    })
+
+    interrupt()
+
+    console.log('Animation complete!')
+    startTime = null // Reset start time
+  }
+}
+
+function findParentWithClassPointer(element) {
+  // Traverse up the DOM tree until a parent with class 'pointer' is found
+  while (element && element !== document) {
+    if (element.classList.contains('pointer')) {
+      return element
+    }
+    element = element.parentElement
+  }
+  // Return null if no parent with the class 'pointer' is found
+  return null
 }

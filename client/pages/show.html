@@ -11,7 +11,7 @@
     <div id="pointersContainer" class="transition-opacity {{ arePointersHidden }}">
       {{#each allPointers getAdmin=false}}
       <div
-        class="pointer w-6 h-6"
+        class="pointer w-6 h-6 transition-opacity"
         style="position:absolute; left:{{ this.coords.x }}px; top:{{ this.coords.y }}px;"
         pointer-id="{{ this.id }}"
         id="pointer{{ this.id }}"
@@ -63,6 +63,16 @@
           <!-- {{ this.nick }} -->
           {{ this.id }}
         </span>
+
+        <span
+          class="ml-6 -mt-9 b text-white rounded-lg absolute w-max transition-opacity text-xl {{
+            areClocksHidden
+          }}"
+        >
+          <!-- {{ this.nick }} -->
+          {{ > miniclock }}
+        </span>
+
         <!-- {{/if}} -->
 
         <!-- {{#if tree}}

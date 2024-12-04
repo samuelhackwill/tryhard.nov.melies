@@ -29,37 +29,41 @@ Template.btnDashboard.onCreated(function () {
 
 function handlePupitreAction(message) {
   switch (message.content) {
-    case 'showBonjour-prologue':
-      addCentralButton()
+    case 'showBonjour':
+      addCentralButton('bonjour')
       break
-    case 'showBtnSaluerLaFoule-sprint-1p':
-      addButton('saluer', 'Saluer la foule')
+    case 'showSaveme':
+      addCentralButton('saveme')
       break
-    case 'showBtnStart2p-sprint-1p':
-      addButton('addp2', 'Faire venir un.e autre joueur.euse')
-      break
-    case 'showBtnMMO-sprint-1p':
-      addButton('addpxxx', 'Faire venir tout le monde')
-      break
-    case 'toggleBtnDashboard-prologue':
-      toggleColumn()
-      break
-    case 'showBtnSanglier-sprint-1p':
-      addButton('addBoar', 'Faire venir le sanglier de Calydon /!\\ DANGER! /!\\ ')
-      break
-    case 'showDocteurs1-prologue':
-      addText('doc1', prologue[1])
-      break
-    case 'showDocteurs2-prologue':
-      addText('doc1', prologue[2])
-      break
-    case 'showDocteurs3-prologue':
-      addText('doc1', prologue[3])
-      break
-    case 'showDocteurs4-prologue':
-      addText('doc1', prologue[4])
-      break
-    case 'showClock-prologue':
+
+    // case 'showBtnSaluerLaFoule':
+    //   addButton('saluer', 'Saluer la foule')
+    //   break
+    // case 'showBtnStart2p':
+    //   addButton('addp2', 'Faire venir un.e autre joueur.euse')
+    //   break
+    // case 'showBtnMMO':
+    //   addButton('addpxxx', 'Faire venir tout le monde')
+    //   break
+    // case 'toggleBtnDashboard':
+    //   toggleColumn()
+    //   break
+    // case 'showBtnSanglier':
+    //   addButton('addBoar', 'Faire venir le sanglier de Calydon /!\\ DANGER! /!\\ ')
+    //   break
+    // case 'showDocteurs1':
+    //   addText('doc1', prologue[1])
+    //   break
+    // case 'showDocteurs2':
+    //   addText('doc1', prologue[2])
+    //   break
+    // case 'showDocteurs3':
+    //   addText('doc1', prologue[3])
+    //   break
+    // case 'showDocteurs4':
+    //   addText('doc1', prologue[4])
+    //   break
+    case 'showClock':
       addClock()
       break
 
@@ -165,20 +169,44 @@ addButton = function (id, value) {
   document.getElementById('btnContainer').appendChild(button)
 }
 
-addCentralButton = function (id, value) {
-  const button = document.createElement('button')
+addCentralButton = function (which) {
+  switch (which) {
+    case 'bonjour':
+      const bonjour = document.createElement('button')
 
-  // Set the button's attributes and classes
-  button.className =
-    'bg-blue-500 h-fit w-fit absolute left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] text-white font-bold py-2 px-4 rounded shadow-md transition-transform shadow-neutral-800 transform stops-events select-none'
-  button.id = 'bonjourSamuel'
+      // Set the button's attributes and classes
+      bonjour.className =
+        'bg-blue-500 h-fit w-fit absolute left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] text-white font-bold py-2 px-4 rounded shadow-md transition-transform shadow-neutral-800 transform stops-events select-none'
+      bonjour.id = 'bonjourSamuel'
 
-  // Set the button's inner text
-  button.textContent = 'Bonjour'
+      // Set the button's inner text
+      bonjour.textContent = 'Bonjour'
 
-  // Append the button to the desired parent element
-  // For example, appending it to the body or a specific container
-  document.getElementsByClassName('backgroundContainer')[0].appendChild(button)
+      // Append the button to the desired parent element
+      // For example, appending it to the body or a specific container
+      document.getElementsByClassName('backgroundContainer')[0].appendChild(bonjour)
+
+      break
+
+    case 'saveme':
+      const saveme = document.createElement('button')
+
+      // Set the button's attributes and classes
+      saveme.className =
+        'bg-blue-500 h-fit w-fit absolute left-[50%] top-[50%] -translate-y-[50%] -translate-x-[50%] text-white font-bold py-2 px-4 rounded shadow-md transition-transform shadow-neutral-800 transform stops-events select-none'
+      saveme.id = 'saveme'
+
+      // Set the button's inner text
+      saveme.textContent = 'se sauvegarder'
+
+      // Append the button to the desired parent element
+      // For example, appending it to the body or a specific container
+      document.getElementsByClassName('backgroundContainer')[0].appendChild(saveme)
+
+      break
+    default:
+      break
+  }
 }
 
 export const toggleColumn = function () {
